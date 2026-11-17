@@ -90,13 +90,22 @@ export function calculateTwoFingerMultiplication(
     const totalVal = sumForStep + carryIn;
     const digitProduced = totalVal % 10;
     carry = Math.floor(totalVal / 10);
+
+    // If pos === 0 (outermost prefix zero), step produces 0 with 0 carry and product already reached, skip phantom zero
+    if (pos === 0 && digitProduced === 0 && carry === 0 && producedDigits.length > 0) {
+      const candidate = producedDigits.slice().reverse().join('');
+      if (candidate === actualProduct) {
+        continue;
+      }
+    }
+
     producedDigits.push(digitProduced);
 
     const explanation = `Column ${stepIndex} (from right): ${partsSummary.join('; ')}${carryIn > 0 ? ` + carry ${carryIn}` : ''} = ${totalVal}. Put down ${digitProduced}, carry ${carry}.`;
 
     steps.push({
       stepIndex,
-      description: `Step ${stepIndex}`,
+      description: `Column ${stepIndex}: ${partsSummary.map(p => p.split(':')[0]).join(' + ')}${carryIn > 0 ? ` + carry ${carryIn}` : ''} = ${totalVal} → write down ${digitProduced}${carry > 0 ? `, carry ${carry}` : ''}`,
       ruleApplied: `Units-and-Tens (${mLen}-digit multiplier)`,
       currentDigit: aPadded[pos],
       workingFormula: `${partsSummary.map(p => p.split(':')[1]?.trim() || p).join(' + ')}${carryIn > 0 ? ` + ${carryIn} carry` : ''} = ${totalVal}`,
@@ -104,7 +113,12 @@ export function calculateTwoFingerMultiplication(
       carryIn,
       carryOut: carry,
       producedDigit: digitProduced,
-      explanation
+      explanation,
+      highlightIndices: {
+        multiplicand: [pos, Math.min(pos + 1, aLen - 1)],
+        multiplier: [mLen - 1],
+        answer: [stepIndex - 1]
+      }
     });
 
     stepIndex++;
@@ -122,7 +136,12 @@ export function calculateTwoFingerMultiplication(
       carryIn: carry,
       carryOut: 0,
       producedDigit: carry,
-      explanation: `Add remaining carry ${carry}.`
+      explanation: `Add remaining carry ${carry}.`,
+      highlightIndices: {
+        multiplicand: [0],
+        multiplier: [0],
+        answer: [stepIndex - 1]
+      }
     });
   }
 

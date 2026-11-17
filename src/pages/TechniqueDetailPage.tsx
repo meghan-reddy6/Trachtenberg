@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   Bookmark,
@@ -23,6 +23,7 @@ import { KaTeXView } from '../components/math/KaTeXView';
 import { DifficultyBadge, MasteryBadge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { Card } from '../components/common/Card';
+import { resolveWorkedExampleCalculation } from '../engines/exampleResolver';
 
 // Import calculation engines for custom simulation
 import { calculateSingleDigitTrachtenberg } from '../engines/singleDigitEngine';
@@ -51,6 +52,13 @@ export const TechniqueDetailPage: React.FC<TechniqueDetailPageProps> = ({
 
   // Active worked example index
   const [activeExampleIndex, setActiveExampleIndex] = useState<number>(0);
+
+  // Reset active example and quiz state whenever technique ID changes
+  useEffect(() => {
+    setActiveExampleIndex(0);
+    setSelectedAnswers({});
+    setShowQuizResults(false);
+  }, [id]);
 
   if (!technique) {
     return (
@@ -106,6 +114,7 @@ export const TechniqueDetailPage: React.FC<TechniqueDetailPageProps> = ({
   };
 
   const currentExample = technique.workedExamples[activeExampleIndex] || technique.workedExamples[0];
+  const activeCalculation = resolveWorkedExampleCalculation(technique, currentExample);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 space-y-8">
@@ -270,7 +279,7 @@ export const TechniqueDetailPage: React.FC<TechniqueDetailPageProps> = ({
         </div>
 
         <TrachtenbergVisualizer
-          calculation={currentExample.details}
+          calculation={activeCalculation}
           techniqueName={technique.name}
           onCustomCalculate={handleCustomCalculate}
           onComplete={stats => {
@@ -292,26 +301,29 @@ export const TechniqueDetailPage: React.FC<TechniqueDetailPageProps> = ({
           Worked Examples from the Book
         </h3>
         <div className="space-y-4">
-          {technique.workedExamples.map((ex, idx) => (
-            <Card key={idx} className="p-4 bg-paper-50/50 dark:bg-ink-900/50">
-              <div className="flex items-baseline justify-between border-b border-paper-200 dark:border-ink-800 pb-2 mb-3">
-                <span className="font-mono text-sm font-bold text-ink-900 dark:text-paper-100">
-                  Example {idx + 1}: {ex.problem} = <strong className="text-academic-700 dark:text-academic-300">{ex.result}</strong>
-                </span>
-                <span className="text-xs text-ink-500">{ex.stepsSummary}</span>
-              </div>
+          {technique.workedExamples.map((ex, idx) => {
+            const resolvedEx = resolveWorkedExampleCalculation(technique, ex);
+            return (
+              <Card key={idx} className="p-4 bg-paper-50/50 dark:bg-ink-900/50 border border-paper-200 dark:border-ink-800">
+                <div className="flex items-baseline justify-between border-b border-paper-200 dark:border-ink-800 pb-2 mb-3">
+                  <span className="font-mono text-sm font-bold text-ink-900 dark:text-paper-100">
+                    Example {idx + 1}: {ex.problem} = <strong className="text-academic-700 dark:text-academic-300">{ex.result || resolvedEx.answerString}</strong>
+                  </span>
+                  <span className="text-xs text-ink-500">{ex.stepsSummary}</span>
+                </div>
 
-              {/* Steps breakdown list */}
-              <div className="space-y-1.5">
-                {ex.details.steps.map((step, sIdx) => (
-                  <div key={sIdx} className="text-xs font-mono flex items-start gap-2 text-ink-700 dark:text-paper-300">
-                    <span className="text-academic-600 font-bold flex-shrink-0">Step {sIdx + 1}:</span>
-                    <span>{step.description} &rarr; produces <strong>{step.producedDigit}</strong> (Formula: {step.workingFormula})</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          ))}
+                {/* Steps breakdown list */}
+                <div className="space-y-1.5">
+                  {resolvedEx.steps.map((step, sIdx) => (
+                    <div key={sIdx} className="text-xs font-mono flex items-start gap-2 text-ink-700 dark:text-paper-300">
+                      <span className="text-academic-600 font-bold flex-shrink-0">Step {sIdx + 1}:</span>
+                      <span>{step.description} &rarr; produces <strong>{step.producedDigit}</strong> (Formula: {step.workingFormula})</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </section>
 

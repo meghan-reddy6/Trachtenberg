@@ -80,7 +80,7 @@ export function calculateDirectMultiplication(multiplicandStr: string, multiplie
 
     steps.push({
       stepIndex: k + 1,
-      description: `Digit position ${k + 1} from right`,
+      description: `Column ${k + 1}: ${pairContributions.map(p => `${p.pairName} (${p.aDigit} × ${p.bDigit} = ${p.prod})`).join(' + ')}${carryIn > 0 ? ` + carry ${carryIn}` : ''} = ${totalStepVal} → write down ${producedDigit}${carry > 0 ? `, carry ${carry}` : ''}`,
       ruleApplied: `${m}-digit direct cross-product`,
       currentDigit: aPadded[k] || 0,
       workingFormula: formula,
@@ -88,7 +88,12 @@ export function calculateDirectMultiplication(multiplicandStr: string, multiplie
       carryIn,
       carryOut: carry,
       producedDigit,
-      explanation
+      explanation,
+      highlightIndices: {
+        multiplicand: pairContributions.map(p => aPadded.length - 1 - p.aIdx),
+        multiplier: pairContributions.map(p => m - 1 - p.bIdx),
+        answer: [steps.length]
+      }
     });
 
     // Check if we can terminate early if we are beyond multiplicand and carry is 0 and rest are 0
@@ -123,7 +128,12 @@ export function calculateDirectMultiplication(multiplicandStr: string, multiplie
       carryIn: carry,
       carryOut: 0,
       producedDigit: carry,
-      explanation: `Write down remaining carry ${carry}.`
+      explanation: `Write down remaining carry ${carry}.`,
+      highlightIndices: {
+        multiplicand: [0],
+        multiplier: [0],
+        answer: [steps.length]
+      }
     });
   }
 

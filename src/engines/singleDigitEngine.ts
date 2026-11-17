@@ -233,11 +233,24 @@ export function calculateSingleDigitTrachtenberg(multiplicandStr: string, multip
 
     const digitProduced = stepVal % 10;
     carry = Math.floor(stepVal / 10);
+
+    // If pos === 0 (prefix zero), stepVal is 0 and carry is 0, Trachtenberg rule states no leading zero is written
+    if (pos === 0 && stepVal === 0 && carry === 0 && producedDigitsReversed.length > 0) {
+      continue;
+    }
+
     producedDigitsReversed.push(digitProduced);
 
+    const neighborDesc = pos < n ? ` + neighbor (${neighbor})` : ' (no neighbor)';
+    const carryDesc = carryIn > 0 ? ` + carry (${carryIn})` : '';
+
     steps.push({
-      stepIndex: n - pos + 1,
-      description: `Step for column ${n - pos + 1} (from right)`,
+      stepIndex: steps.length + 1,
+      description: pos === n
+        ? `Column 1 (Units): ${current}${neighborDesc}${carryDesc} = ${stepVal} → write down ${digitProduced}${carry > 0 ? `, carry ${carry}` : ''}`
+        : pos === 0
+          ? `Prefix Zero: 0${neighborDesc}${carryDesc} = ${stepVal} → write down ${digitProduced}${carry > 0 ? `, carry ${carry}` : ''}`
+          : `Column ${steps.length + 1}: ${current}${neighborDesc}${carryDesc} = ${stepVal} → write down ${digitProduced}${carry > 0 ? `, carry ${carry}` : ''}`,
       ruleApplied: ruleText,
       currentDigit: current,
       neighborDigit: pos < n ? neighbor : undefined,
@@ -248,9 +261,9 @@ export function calculateSingleDigitTrachtenberg(multiplicandStr: string, multip
       producedDigit: digitProduced,
       explanation,
       highlightIndices: {
-        multiplicand: [pos],
+        multiplicand: multiplier === 2 ? [pos] : (pos < n ? [pos, pos + 1] : [pos]),
         multiplier: [0],
-        answer: [n - pos]
+        answer: [steps.length]
       }
     });
   }
@@ -268,7 +281,12 @@ export function calculateSingleDigitTrachtenberg(multiplicandStr: string, multip
       carryIn: carry,
       carryOut: 0,
       producedDigit: carry,
-      explanation: `Write down remaining carry ${carry}.`
+      explanation: `Write down remaining carry ${carry}.`,
+      highlightIndices: {
+        multiplicand: [0],
+        multiplier: [0],
+        answer: [steps.length]
+      }
     });
   }
 
