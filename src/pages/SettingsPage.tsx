@@ -197,76 +197,74 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
   className="gap-1.5"
 >
   <Upload className="w-3.5 h-3.5" /> Restore Backup
-</Button>
-          </form >
-        </div >
-      </Card >
+              </Button>
+            </form>
+          </div>
+        </Card>
 
-  {/* 3. Developer Appreciation & Buy Me a Chai */ }
-  < Card className = "p-6 border-amber-200 dark:border-amber-900/60 bg-amber-50/20 dark:bg-amber-950/10 space-y-3" >
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      <div className="space-y-1">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-[10px] font-mono uppercase font-bold text-amber-800 dark:text-amber-300">
-          <Sparkles className="w-3 h-3" /> Developed by Meghan (@meghan-reddy6)
-        </div>
-        <h3 className="text-base font-serif font-bold text-ink-950 dark:text-paper-50">
-          Developer Credits & Support
-        </h3>
-          <p className="text-xs text-ink-600 dark:text-slate-300 max-w-xl leading-relaxed">
-            This interactive platform was architected and built by <strong>Meghan</strong> (<a href="https://github.com/meghan-reddy6" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">@meghan-reddy6</a>), creator of <a href="https://meghan-reddy6.github.io/codetocompute/" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">CodeToCompute</a>. If this educational software helped sharpen your calculation reflexes, support future open-source developments with a cup of chai!
+        {/* 3. Developer Appreciation & Buy Me a Chai */}
+        <Card className="p-6 border-amber-200 dark:border-amber-900/60 bg-amber-50/20 dark:bg-amber-950/10 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-[10px] font-mono uppercase font-bold text-amber-800 dark:text-amber-300">
+                <Sparkles className="w-3 h-3" /> Developed by Meghan (@meghan-reddy6)
+              </div>
+              <h3 className="text-base font-serif font-bold text-ink-950 dark:text-paper-50">
+                Developer Credits & Support
+              </h3>
+              <p className="text-xs text-ink-600 dark:text-slate-300 max-w-xl leading-relaxed">
+                This interactive platform was architected and built by <strong>Meghan</strong> (<a href="https://github.com/meghan-reddy6" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">@meghan-reddy6</a>), creator of <a href="https://meghan-reddy6.github.io/codetocompute/" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">CodeToCompute</a>. If this educational software helped sharpen your calculation reflexes, support future open-source developments with a cup of chai!
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-2 flex-shrink-0">
+              <a
+                href="https://www.buymeachai.in/meghansai6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white dark:bg-amber-500 dark:hover:bg-amber-400 dark:text-slate-950 text-xs font-bold shadow-xs hover:shadow transition-all"
+              >
+                <Coffee className="w-4 h-4" /> Support on Buy Me a Chai ☕
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* 4. Reset All Progress Danger Zone */}
+        <Card className="p-6 border-rose-200 dark:border-rose-900/60 bg-rose-50/20 dark:bg-rose-950/10 space-y-3">
+          <h3 className="text-base font-serif font-bold text-rose-900 dark:text-rose-300 flex items-center gap-2">
+            <AlertTriangle className="w-4 h-4 text-rose-600" />
+            Reset All Progress
+          </h3>
+          <p className="text-xs text-ink-600 dark:text-paper-400 leading-relaxed">
+            Permanently clear all practice attempts, mastered techniques, bookmarks, and speed records. This action cannot be undone.
           </p>
-      </div>
-      <div className="flex flex-col sm:flex-row items-center gap-2 flex-shrink-0">
-        <a
-          href="https://www.buymeachai.in/meghansai6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white dark:bg-amber-500 dark:hover:bg-amber-400 dark:text-slate-950 text-xs font-bold shadow-xs hover:shadow transition-all"
-        >
-          <Coffee className="w-4 h-4" /> Support on Buy Me a Chai ☕
-        </a>
-      </div>
-    </div>
-      </Card >
 
-  {/* 4. Reset All Progress Danger Zone */ }
-  < Card className = "p-6 border-rose-200 dark:border-rose-900/60 bg-rose-50/20 dark:bg-rose-950/10 space-y-3" >
-        <h3 className="text-base font-serif font-bold text-rose-900 dark:text-rose-300 flex items-center gap-2">
-          <AlertTriangle className="w-4 h-4 text-rose-600" />
-          Reset All Progress
-        </h3>
-        <p className="text-xs text-ink-600 dark:text-paper-400 leading-relaxed">
-          Permanently clear all practice attempts, mastered techniques, bookmarks, and speed records. This action cannot be undone.
-        </p>
-
-{
-  !showResetConfirm ? (
-    <Button
-      variant="danger"
-      size="sm"
-      onClick={() => setShowResetConfirm(true)}
-      className="gap-1.5"
-    >
-      <Trash2 className="w-3.5 h-3.5" /> Reset All Learning Progress
-    </Button>
-  ) : (
-  <div className="p-3 rounded border border-rose-300 dark:border-rose-800 bg-white dark:bg-ink-900 space-y-2">
-    <p className="text-xs font-semibold text-rose-700 dark:text-rose-300">
-      Are you completely certain? All local calculation statistics will be reset.
-    </p>
-    <div className="flex gap-2">
-      <Button variant="danger" size="sm" onClick={handleReset}>
-        Yes, Reset Everything
-      </Button>
-      <Button variant="outline" size="sm" onClick={() => setShowResetConfirm(false)}>
-        Cancel
-      </Button>
-    </div>
-  </div>
-)
-}
-      </Card >
-    </div >
-  );
-};
+          {!showResetConfirm ? (
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => setShowResetConfirm(true)}
+              className="gap-1.5"
+            >
+              <Trash2 className="w-3.5 h-3.5" /> Reset All Learning Progress
+            </Button>
+          ) : (
+            <div className="p-3 rounded border border-rose-300 dark:border-rose-800 bg-white dark:bg-ink-900 space-y-2">
+              <p className="text-xs font-semibold text-rose-700 dark:text-rose-300">
+                Are you completely certain? All local calculation statistics will be reset.
+              </p>
+              <div className="flex gap-2">
+                <Button variant="danger" size="sm" onClick={handleReset}>
+                  Yes, Reset Everything
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => setShowResetConfirm(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          )}
+        </Card>
+      </div>
+    );
+  };
 
