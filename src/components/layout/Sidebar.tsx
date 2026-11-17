@@ -50,10 +50,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
               end={item.path === '/'}
               onClick={onNavigate}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-colors ${
-                  isActive
-                    ? 'bg-academic-700 text-white shadow-xs font-semibold dark:bg-blue-600 dark:text-white dark:shadow-sm dark:shadow-blue-900/40'
-                    : 'text-ink-700 hover:text-ink-950 hover:bg-paper-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/70'
+                `flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-colors ${isActive
+                  ? 'bg-academic-700 text-white shadow-xs font-semibold dark:bg-blue-600 dark:text-white dark:shadow-sm dark:shadow-blue-900/40'
+                  : 'text-ink-700 hover:text-ink-950 hover:bg-paper-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/70'
                 }`
               }
             >
@@ -79,10 +78,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
               to={`/learn/${ch.id}`}
               onClick={onNavigate}
               className={({ isActive }) =>
-                `flex items-center justify-between px-3 py-1.5 rounded text-xs transition-colors group ${
-                  isActive
-                    ? 'bg-paper-200 dark:bg-blue-950/40 text-academic-800 dark:text-blue-300 font-semibold border-l-2 border-academic-600 dark:border-blue-400'
-                    : 'text-ink-600 hover:text-ink-900 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/50'
+                `flex items-center justify-between px-3 py-1.5 rounded text-xs transition-colors group ${isActive
+                  ? 'bg-paper-200 dark:bg-blue-950/40 text-academic-800 dark:text-blue-300 font-semibold border-l-2 border-academic-600 dark:border-blue-400'
+                  : 'text-ink-600 hover:text-ink-900 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800/50'
                 }`
               }
             >
@@ -102,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
           The Trachtenberg Speed System
         </div>
         <div className="font-sans text-[10px] text-ink-400 dark:text-slate-400">
-          Curated & engineered by{' '}
+          Developed by{' '}
           <a
             href="https://github.com/meghan-reddy6"
             target="_blank"
