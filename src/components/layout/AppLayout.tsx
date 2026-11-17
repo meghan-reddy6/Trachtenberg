@@ -64,7 +64,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         <Sidebar className="hidden md:flex flex-shrink-0" />
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto pb-16 md:pb-6 focus:outline-none">
+        <main className="flex-1 overflow-y-auto pb-16 md:pb-6 focus:outline-none bg-paper-50 dark:bg-ink-950">
           {children}
         </main>
       </div>
