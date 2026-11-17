@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #FAF8F2;
+    --bg-card: #FFFFFF;
+    --text-main: #1A1C1E;
+    --text-muted: #5A616D;
+    --border-subtle: #E8E2D5;
+    --accent: #1E3A8A;
+  }
+
+  .dark {
+    --bg-main: #121417;
+    --bg-card: #1A1D23;
+    --text-main: #F3EFE6;
+    --text-muted: #959DAA;
+    --border-subtle: #2C3036;
+    --accent: #60A5FA;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Mathematical workspace styling */
+.math-digit-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* Custom scrollbar for mathematical tables */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.4);
+}

@@ -1,0 +1,100 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Search, Sun, Moon, Menu, Award, BookOpen } from 'lucide-react';
+import { UserProgress } from '../../types';
+
+interface HeaderProps {
+  progress: UserProgress;
+  onOpenSearch: () => void;
+  onToggleTheme: () => void;
+  onToggleMobileMenu: () => void;
+  currentTheme: 'light' | 'dark';
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  progress,
+  onOpenSearch,
+  onToggleTheme,
+  onToggleMobileMenu,
+  currentTheme
+}) => {
+  const masteredCount = Object.values(progress.mastery).filter(m => m.level === 'mastered').length;
+
+  return (
+    <header className="sticky top-0 z-30 h-14 bg-white/95 dark:bg-ink-900/95 backdrop-blur-xs border-b border-paper-200 dark:border-ink-800 transition-colors">
+      <div className="h-full px-4 sm:px-6 flex items-center justify-between gap-4">
+        {/* Left: Mobile hamburger & Logo */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onToggleMobileMenu}
+            className="md:hidden p-2 -ml-2 rounded text-ink-700 hover:text-ink-950 dark:text-paper-300 dark:hover:text-paper-100"
+            aria-label="Toggle navigation drawer"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+
+          <NavLink to="/" className="flex items-center gap-2.5 group">
+            <div className="w-7 h-7 rounded bg-academic-800 dark:bg-academic-600 text-white flex items-center justify-center font-serif font-black text-sm shadow-xs">
+              T
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif font-bold text-sm tracking-wide text-ink-950 dark:text-paper-50 leading-tight">
+                TRACHTENBERG
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-wider text-academic-700 dark:text-academic-400 leading-none">
+                Speed Mathematics
+              </span>
+            </div>
+          </NavLink>
+        </div>
+
+        {/* Center: Search Trigger (Desktop & Tablet) */}
+        <div className="flex-1 max-w-md hidden sm:block">
+          <button
+            onClick={onOpenSearch}
+            className="w-full flex items-center justify-between px-3 py-1.5 text-xs bg-paper-100 hover:bg-paper-200/70 dark:bg-ink-800 dark:hover:bg-ink-750 text-ink-500 dark:text-paper-400 rounded-md border border-paper-300 dark:border-ink-700 transition-colors"
+          >
+            <span className="flex items-center gap-2">
+              <Search className="w-3.5 h-3.5" />
+              <span>Search techniques, rules, chapters...</span>
+            </span>
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-white dark:bg-ink-900 border border-paper-300 dark:border-ink-700 rounded shadow-2xs">
+              Ctrl K
+            </kbd>
+          </button>
+        </div>
+
+        {/* Right: Search (mobile icon), Stats badge, Theme Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={onOpenSearch}
+            className="sm:hidden p-2 rounded text-ink-600 hover:text-ink-900 dark:text-paper-300"
+            aria-label="Search"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
+          {/* Mastered Badge */}
+          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-paper-100 dark:bg-ink-800 border border-paper-200 dark:border-ink-750 text-xs text-ink-700 dark:text-paper-300">
+            <Award className="w-3.5 h-3.5 text-academic-600 dark:text-academic-400" />
+            <span>Mastered: <strong className="font-mono text-academic-800 dark:text-academic-300">{masteredCount}</strong> / 32</span>
+          </div>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={onToggleTheme}
+            className="p-2 rounded text-ink-600 hover:text-ink-900 dark:text-paper-300 dark:hover:text-paper-100 hover:bg-paper-100 dark:hover:bg-ink-800 transition-colors"
+            aria-label="Toggle theme"
+            title={`Switch to ${currentTheme === 'light' ? 'Dark' : 'Light'} theme`}
+          >
+            {currentTheme === 'light' ? (
+              <Moon className="w-4 h-4" />
+            ) : (
+              <Sun className="w-4 h-4" />
+            )}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+};
