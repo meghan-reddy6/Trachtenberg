@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Search, Sun, Moon, Menu, Award, Coffee, Sparkles } from 'lucide-react';
 import { UserProgress } from '../../types';
+import { getAllTechniquesList } from '../../content/curriculum';
 
 interface HeaderProps {
   progress: UserProgress;
@@ -19,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   currentTheme
 }) => {
   const masteredCount = Object.values(progress.mastery).filter(m => m.level === 'mastered').length;
+  const totalTechniques = getAllTechniquesList().length;
 
   return (
     <header className="sticky top-0 z-30 h-14 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs border-b border-paper-200 dark:border-slate-800 transition-colors">
@@ -82,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Mastered Badge (Desktop) */}
           <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded bg-paper-100 dark:bg-slate-800 border border-paper-200 dark:border-slate-700 text-xs text-ink-700 dark:text-slate-300 font-mono">
             <Award className="w-3.5 h-3.5 text-academic-600 dark:text-blue-400" />
-            <span>Mastered: <strong className="text-academic-800 dark:text-blue-400">{masteredCount}</strong>/32</span>
+            <span>Mastered: <strong className="text-academic-800 dark:text-blue-400">{masteredCount}</strong>/{totalTechniques}</span>
           </div>
 
           {/* Mobile Search Button */}
