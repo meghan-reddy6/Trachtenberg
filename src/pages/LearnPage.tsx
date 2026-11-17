@@ -173,3 +173,4 @@ export const LearnPage: React.FC<LearnPageProps> = ({ progress }) => {
     </div>
   );
 };
+

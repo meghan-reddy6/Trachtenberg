@@ -137,3 +137,4 @@ export const ChaptersPage: React.FC<ChaptersPageProps> = ({ progress }) => {
     </div>
   );
 };
+

@@ -162,3 +162,4 @@ export function resetProgress(): UserProgress {
   localStorage.removeItem(STORAGE_KEY);
   return defaultProgress;
 }
+

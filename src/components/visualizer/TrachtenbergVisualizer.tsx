@@ -598,3 +598,4 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
     </div>
   );
 };
+

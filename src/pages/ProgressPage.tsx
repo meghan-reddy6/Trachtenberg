@@ -251,3 +251,4 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({ progress }) => {
     </div>
   );
 };
+

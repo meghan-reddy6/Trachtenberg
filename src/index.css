@@ -13,12 +13,12 @@
   }
 
   .dark {
-    --bg-main: #121417;
-    --bg-card: #1A1D23;
-    --text-main: #F3EFE6;
-    --text-muted: #959DAA;
-    --border-subtle: #2C3036;
-    --accent: #60A5FA;
+    --bg-main: #0B0D0F;
+    --bg-card: #14171A;
+    --text-main: #FDFCF7;
+    --text-muted: #949EB0;
+    --border-subtle: #262B32;
+    --accent: #6293CA;
   }
 
   body {
@@ -26,6 +26,21 @@
     color: var(--text-main);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+}
+
+/* KaTeX Dark Mode Support */
+.dark .katex,
+.dark .katex-html {
+  color: #FDFCF7 !important;
+}
+
+.dark .katex .mord,
+.dark .katex .mbin,
+.dark .katex .mrel,
+.dark .katex .mopen,
+.dark .katex .mclose,
+.dark .katex .mpunct {
+  color: #FDFCF7 !important;
 }
 
 /* Mathematical workspace styling */

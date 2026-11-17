@@ -238,3 +238,4 @@ export const TechniqueLibraryPage: React.FC<TechniqueLibraryPageProps> = ({ prog
     </div>
   );
 };
+

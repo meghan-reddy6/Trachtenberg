@@ -301,3 +301,4 @@ export function calculateSingleDigitTrachtenberg(multiplicandStr: string, multip
     }
   };
 }
+

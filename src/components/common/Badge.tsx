@@ -95,3 +95,4 @@ export const MasteryBadge: React.FC<MasteryBadgeProps> = ({ level, className = '
     </span>
   );
 };
+

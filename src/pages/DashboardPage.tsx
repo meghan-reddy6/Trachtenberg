@@ -370,3 +370,4 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
     </div>
   );
 };
+

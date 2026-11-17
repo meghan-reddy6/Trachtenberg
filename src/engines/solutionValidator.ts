@@ -48,3 +48,4 @@ export function getProgressiveHint(question: PracticeQuestion, hintLevel: 1 | 2 
   if (hintLevel === 2) return `Next Operation Guidance: ${question.hints[1]}`;
   return `Partial Calculation: ${question.hints[2]}`;
 }
+

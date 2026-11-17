@@ -28,3 +28,4 @@ export const KaTeXView: React.FC<KaTeXViewProps> = ({ math, block = false, class
     />
   );
 };
+

@@ -149,3 +149,4 @@ export function computeElevensRemainderDetailed(numStr: string): ElevensRemainde
     explanation: `Sum of every second digit from right (${evenSum}) minus sum of skipped digits (${oddSum}) = ${diff} ≡ ${normalizedRem} (mod 11). Pairwise check: sum of pairs = ${pairwiseSum} ≡ ${pairwiseSum % 11} (mod 11).`
   };
 }
+

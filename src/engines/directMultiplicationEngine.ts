@@ -154,3 +154,4 @@ export function calculateDirectMultiplication(multiplicandStr: string, multiplie
     }
   };
 }
+

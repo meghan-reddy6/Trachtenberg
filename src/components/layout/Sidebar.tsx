@@ -96,13 +96,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
         </div>
       </div>
 
-      {/* Footer Info */}
-      <div className="p-4 border-t border-paper-200 dark:border-ink-800 text-[11px] text-ink-500 font-serif italic text-center">
-        The Trachtenberg Speed System
-        <div className="font-sans font-normal text-[10px] not-italic text-ink-400 mt-0.5">
-          Based on Cutler & McShane (1960)
+      {/* Footer Info & Developer Credits */}
+      <div className="p-3.5 border-t border-paper-200 dark:border-ink-800 text-[11px] text-ink-500 text-center space-y-1">
+        <div className="font-serif italic text-ink-700 dark:text-paper-300">
+          The Trachtenberg Speed System
+        </div>
+        <div className="font-sans text-[10px] text-ink-400">
+          Engineered by <strong className="text-academic-700 dark:text-academic-400 font-semibold">Me</strong>
         </div>
       </div>
     </aside>
   );
 };
+

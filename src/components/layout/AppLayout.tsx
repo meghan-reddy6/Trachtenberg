@@ -19,20 +19,23 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
 }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>(progress.settings.theme || 'light');
 
-  // Sync theme with DOM documentElement
+  // Directly derive theme from progress settings to avoid state desync
+  const theme = progress.settings.theme || 'light';
+
+  // Sync theme with DOM documentElement and body
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
   }, [theme]);
 
   const handleToggleTheme = () => {
     const nextTheme: 'light' | 'dark' = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
     const updated: UserProgress = {
       ...progress,
       settings: {

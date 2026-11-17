@@ -76,3 +76,4 @@ describe('Chapter 1 Trachtenberg Basic Multiplication', () => {
     expect(calculateSingleDigitTrachtenberg('2588', 3).answerString).toBe('7764');
   });
 });
+
