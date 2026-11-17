@@ -114,7 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
         </div>
         <div>
           <a
-            href="https://buymeachai.in/meghansai6"
+            href="https://www.buymeachai.in/meghansai6"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400 hover:underline"

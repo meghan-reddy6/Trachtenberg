@@ -9,7 +9,6 @@ import {
 } from '../storage/progressStorage';
 import { Card } from '../components/common/Card';
 import { Button } from '../components/common/Button';
-import { BuyMeAChaiModal } from '../components/common/BuyMeAChaiModal';
 
 interface SettingsPageProps {
   progress: UserProgress;
@@ -20,7 +19,6 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
   const [importJsonText, setImportJsonText] = useState('');
   const [importStatus, setImportStatus] = useState<{ success: boolean; msg: string } | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [showChaiModal, setShowChaiModal] = useState(false);
 
   // Update a setting
   const updateSetting = <K extends keyof UserProgress['settings']>(
@@ -223,20 +221,13 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-2 flex-shrink-0">
             <a
-              href="https://buymeachai.in/meghansai6"
+              href="https://www.buymeachai.in/meghansai6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold shadow-xs hover:shadow transition-all"
             >
-              <Coffee className="w-4 h-4" /> Buy Me a Chai ☕
+              <Coffee className="w-4 h-4" /> Support on Buy Me a Chai ☕
             </a>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowChaiModal(true)}
-            >
-              View Bio
-            </Button>
           </div>
         </div>
       </Card>
@@ -276,12 +267,6 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
           </div>
         )}
       </Card>
-
-      {/* Buy Me a Chai Modal */}
-      <BuyMeAChaiModal
-        isOpen={showChaiModal}
-        onClose={() => setShowChaiModal(false)}
-      />
     </div>
   );
 };

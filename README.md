@@ -139,5 +139,5 @@ To deploy:
 
 - **Curated & Engineered by**: **Meghan** ([@meghan-reddy6](https://github.com/meghan-reddy6))
 - **Portfolio & Systems Roadmap**: [CodeToCompute](https://meghan-reddy6.github.io/codetocompute/)
-- **Support the Developer**: [Buy Me a Chai](https://buymeachai.in/meghansai6) ☕
+- **Support the Developer**: [Buy Me a Chai](https://www.buymeachai.in/meghansai6) ☕
 
