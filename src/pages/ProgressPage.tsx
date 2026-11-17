@@ -196,19 +196,19 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({ progress }) => {
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chapterData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
-                <XAxis dataKey="chapter" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} domain={[0, 100]} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} stroke={progress.settings.theme === 'dark' ? '#334155' : '#cbd5e1'} />
+                <XAxis dataKey="chapter" tick={{ fontSize: 11, fill: progress.settings.theme === 'dark' ? '#cbd5e1' : '#475569' }} />
+                <YAxis tick={{ fontSize: 11, fill: progress.settings.theme === 'dark' ? '#cbd5e1' : '#475569' }} domain={[0, 100]} />
                 <Tooltip
                   formatter={(val: any) => [`${val}%`, 'Completed']}
                   contentStyle={{
-                    backgroundColor: '#1e293b',
-                    borderColor: '#334155',
-                    color: '#f8fafc',
+                    backgroundColor: progress.settings.theme === 'dark' ? '#14171a' : '#ffffff',
+                    borderColor: progress.settings.theme === 'dark' ? '#262b32' : '#e2e8f0',
+                    color: progress.settings.theme === 'dark' ? '#f8fafc' : '#0f172a',
                     fontSize: '12px'
                   }}
                 />
-                <Bar dataKey="pct" fill="#1e3a8a" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="pct" fill={progress.settings.theme === 'dark' ? '#60a5fa' : '#1e3a8a'} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

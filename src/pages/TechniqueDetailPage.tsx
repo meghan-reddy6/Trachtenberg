@@ -232,7 +232,7 @@ export const TechniqueDetailPage: React.FC<TechniqueDetailPageProps> = ({
               key={idx}
               className="p-3 bg-white dark:bg-ink-850 border border-paper-300 dark:border-ink-800 rounded-lg flex items-start gap-3"
             >
-              <div className="w-6 h-6 rounded-full bg-academic-100 text-academic-800 dark:bg-academic-950 dark:text-academic-300 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0">
+              <div className="w-6 h-6 rounded-full bg-academic-100 text-academic-800 dark:bg-academic-900/80 dark:text-academic-300 dark:border dark:border-academic-700/50 flex items-center justify-center font-mono text-xs font-bold flex-shrink-0">
                 {idx + 1}
               </div>
               <p className="text-xs sm:text-sm text-ink-800 dark:text-paper-200 leading-relaxed">

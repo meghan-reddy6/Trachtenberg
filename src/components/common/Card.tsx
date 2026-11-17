@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '../../utils/cn';
 
 interface CardProps {
   children: React.ReactNode;
@@ -16,12 +17,13 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`bg-white dark:bg-ink-850 border border-paper-300 dark:border-ink-800 rounded-lg p-5 transition-all ${
-        hoverable ? 'hover:border-paper-400 dark:hover:border-ink-700 cursor-pointer shadow-sm hover:shadow' : ''
-      } ${className}`}
+      className={cn(
+        'bg-white dark:bg-ink-850 border border-paper-300 dark:border-ink-800 rounded-lg p-5 transition-all text-ink-900 dark:text-paper-100',
+        hoverable && 'hover:border-paper-400 dark:hover:border-ink-700 cursor-pointer shadow-sm hover:shadow',
+        className
+      )}
     >
       {children}
     </div>
   );
 };
-

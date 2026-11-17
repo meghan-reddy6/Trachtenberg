@@ -272,7 +272,7 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
       </div>
 
       {/* Main Workspace Area */}
-      <div className="p-5 flex flex-col items-center">
+      <div className="p-5 flex flex-col items-center bg-white dark:bg-ink-850">
         {/* Speed Mode Timer Display */}
         {mode === 'speed' && (
           <div className="mb-3 px-3 py-1 rounded-full bg-paper-100 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 text-xs font-mono text-ink-700 dark:text-paper-300">

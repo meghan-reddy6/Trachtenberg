@@ -111,6 +111,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
           >
             Meghan (@meghan-reddy6)
           </a>
+          {' · '}
+          <span className="font-mono text-[9px] uppercase tracking-wider text-ink-400">MIT License</span>
         </div>
         <div>
           <a

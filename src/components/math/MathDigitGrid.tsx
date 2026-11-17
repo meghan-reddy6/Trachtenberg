@@ -140,7 +140,7 @@ export const MathDigitGrid: React.FC<MathDigitGridProps> = ({
             );
           })}
           {ansChars.length === 0 && (
-            <div className="h-10 sm:h-12 flex items-center text-xs text-ink-400 dark:text-ink-500 italic px-4">
+            <div className="h-10 sm:h-12 flex items-center text-xs text-ink-400 dark:text-paper-400 italic px-4">
               Answer will appear here
             </div>
           )}
