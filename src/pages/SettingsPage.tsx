@@ -212,23 +212,32 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-[10px] font-mono uppercase font-bold text-amber-800 dark:text-amber-300">
-              <Sparkles className="w-3 h-3" /> Crafted by Me
+              <Sparkles className="w-3 h-3" /> Engineered by Meghan (@meghan-reddy6)
             </div>
             <h3 className="text-base font-serif font-bold text-ink-950 dark:text-paper-50">
               Developer Credits & Support
             </h3>
             <p className="text-xs text-ink-600 dark:text-paper-300 max-w-xl leading-relaxed">
-              This interactive platform was architected and built by <strong>Me</strong> with pure deterministic TypeScript engines, KaTeX notation, and zero external tracking. If it helped you master mental mathematics, consider supporting future open-source projects!
+              This interactive platform was architected and built by <strong>Meghan</strong> (<a href="https://github.com/meghan-reddy6" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-academic-400 font-semibold underline">@meghan-reddy6</a>), creator of <a href="https://meghan-reddy6.github.io/codetocompute/" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-academic-400 font-semibold underline">CodeToCompute</a>. If this educational software helped sharpen your calculation reflexes, support future open-source developments with a cup of chai!
             </p>
           </div>
-          <Button
-            variant="primary"
-            size="md"
-            onClick={() => setShowChaiModal(true)}
-            className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white border-0 shadow-sm flex-shrink-0"
-          >
-            <Coffee className="w-4 h-4 mr-1.5" /> Buy Me a Chai ☕
-          </Button>
+          <div className="flex flex-col sm:flex-row items-center gap-2 flex-shrink-0">
+            <a
+              href="https://buymeachai.in/meghansai6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-xs transition-colors"
+            >
+              <Coffee className="w-4 h-4" /> Buy Me a Chai ☕
+            </a>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowChaiModal(true)}
+            >
+              View Bio
+            </Button>
+          </div>
         </div>
       </Card>
 

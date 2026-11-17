@@ -54,10 +54,10 @@ export const Header: React.FC<HeaderProps> = ({
             <div
               onClick={() => setIsChaiModalOpen(true)}
               className="hidden lg:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-paper-100 hover:bg-paper-200 dark:bg-ink-800 dark:hover:bg-ink-750 border border-paper-300 dark:border-ink-700 text-xs text-ink-700 dark:text-paper-300 cursor-pointer transition-colors"
-              title="Developed with precision & passion by Me. Click to support with a chai!"
+              title="Architected & engineered by Meghan (@meghan-reddy6). Click to view details or buy a chai!"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Dev: <strong className="text-academic-700 dark:text-academic-400 font-bold">Me</strong></span>
+              <span>Dev: <strong className="text-academic-700 dark:text-academic-400 font-bold">Meghan</strong> <span className="text-[10px] opacity-75 font-mono">(@meghan-reddy6)</span></span>
             </div>
           </div>
 

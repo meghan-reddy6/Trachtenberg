@@ -132,3 +132,12 @@ To deploy:
 2. In your GitHub repository settings, navigate to **Settings &rarr; Pages**.
 3. Under **Build and deployment &rarr; Source**, select **GitHub Actions**.
 4. The deployment workflow will trigger automatically upon push, run tests, compile the bundle, and publish to `https://<username>.github.io/<repository-name>/`.
+
+---
+
+## Author & Developer Credits
+
+- **Curated & Engineered by**: **Meghan** ([@meghan-reddy6](https://github.com/meghan-reddy6))
+- **Portfolio & Systems Roadmap**: [CodeToCompute](https://meghan-reddy6.github.io/codetocompute/)
+- **Support the Developer**: [Buy Me a Chai](https://buymeachai.in/meghansai6) ☕
+

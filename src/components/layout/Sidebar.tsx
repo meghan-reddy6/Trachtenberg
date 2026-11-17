@@ -97,12 +97,30 @@ export const Sidebar: React.FC<SidebarProps> = ({ className = '', onNavigate }) 
       </div>
 
       {/* Footer Info & Developer Credits */}
-      <div className="p-3.5 border-t border-paper-200 dark:border-ink-800 text-[11px] text-ink-500 text-center space-y-1">
+      <div className="p-3.5 border-t border-paper-200 dark:border-ink-800 text-[11px] text-ink-500 text-center space-y-1.5">
         <div className="font-serif italic text-ink-700 dark:text-paper-300">
           The Trachtenberg Speed System
         </div>
         <div className="font-sans text-[10px] text-ink-400">
-          Engineered by <strong className="text-academic-700 dark:text-academic-400 font-semibold">Me</strong>
+          Curated & engineered by{' '}
+          <a
+            href="https://github.com/meghan-reddy6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-academic-700 dark:text-academic-400 font-bold hover:underline"
+          >
+            Meghan (@meghan-reddy6)
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://buymeachai.in/meghansai6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-700 dark:text-amber-400 hover:underline"
+          >
+            <span>Buy Me a Chai ☕</span>
+          </a>
         </div>
       </div>
     </aside>
