@@ -221,13 +221,13 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
         </div>
 
         {/* Mode Selector */}
-        <div className="flex items-center gap-1 bg-paper-200/70 dark:bg-ink-800 p-1 rounded-lg text-xs font-medium">
+        <div className="flex items-center gap-1 bg-paper-200/70 dark:bg-slate-800 p-1 rounded-lg text-xs font-medium">
           <button
             onClick={() => { setMode('demonstration'); setIsPlaying(false); }}
             className={`px-3 py-1.5 rounded-md transition-colors ${
               mode === 'demonstration'
-                ? 'bg-white dark:bg-ink-700 text-ink-900 dark:text-paper-100 shadow-xs font-semibold'
-                : 'text-ink-600 dark:text-paper-400 hover:text-ink-900'
+                ? 'bg-white dark:bg-slate-700 text-ink-900 dark:text-white shadow-xs font-semibold'
+                : 'text-ink-600 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
             }`}
           >
             Demonstration
@@ -236,8 +236,8 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
             onClick={() => { setMode('guided'); setIsPlaying(false); setCurrentStepIndex(0); }}
             className={`px-3 py-1.5 rounded-md transition-colors ${
               mode === 'guided'
-                ? 'bg-white dark:bg-ink-700 text-ink-900 dark:text-paper-100 shadow-xs font-semibold'
-                : 'text-ink-600 dark:text-paper-400 hover:text-ink-900'
+                ? 'bg-white dark:bg-slate-700 text-ink-900 dark:text-white shadow-xs font-semibold'
+                : 'text-ink-600 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
             }`}
           >
             Guided
@@ -246,8 +246,8 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
             onClick={() => { setMode('independent'); setIsPlaying(false); }}
             className={`px-3 py-1.5 rounded-md transition-colors ${
               mode === 'independent'
-                ? 'bg-white dark:bg-ink-700 text-ink-900 dark:text-paper-100 shadow-xs font-semibold'
-                : 'text-ink-600 dark:text-paper-400 hover:text-ink-900'
+                ? 'bg-white dark:bg-slate-700 text-ink-900 dark:text-white shadow-xs font-semibold'
+                : 'text-ink-600 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
             }`}
           >
             Independent
@@ -261,11 +261,11 @@ export const TrachtenbergVisualizer: React.FC<TrachtenbergVisualizerProps> = ({
             }}
             className={`px-3 py-1.5 rounded-md transition-colors flex items-center gap-1 ${
               mode === 'speed'
-                ? 'bg-white dark:bg-ink-700 text-academic-700 dark:text-academic-300 shadow-xs font-semibold'
-                : 'text-ink-600 dark:text-paper-400 hover:text-ink-900'
+                ? 'bg-white dark:bg-slate-700 text-blue-700 dark:text-blue-300 shadow-xs font-semibold'
+                : 'text-ink-600 dark:text-slate-400 hover:text-ink-900 dark:hover:text-white'
             }`}
           >
-            <Zap className="w-3 h-3 text-academic-600" />
+            <Zap className="w-3 h-3 text-academic-600 dark:text-blue-400" />
             Speed
           </button>
         </div>

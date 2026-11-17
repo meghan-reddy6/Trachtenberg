@@ -13,12 +13,12 @@
   }
 
   .dark {
-    --bg-main: #0B0D0F;
-    --bg-card: #14171A;
-    --text-main: #FDFCF7;
-    --text-muted: #949EB0;
-    --border-subtle: #262B32;
-    --accent: #6293CA;
+    --bg-main: #0B0F17;
+    --bg-card: #111827;
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+    --border-subtle: #1E293B;
+    --accent: #60A5FA;
   }
 
   body {
@@ -29,8 +29,8 @@
 }
 
 /* ==========================================================================
-   Comprehensive Dark Theme Engine & Failsafe Overrides
-   Ensures deep academic aesthetics and high contrast across all components
+   Comprehensive Dark Theme Engine & Contrast Balancing
+   Transforms dark mode into a luminous, pristine academic workspace
    ========================================================================== */
 
 html.dark {
@@ -38,109 +38,120 @@ html.dark {
 }
 
 html.dark body {
-  background-color: #0B0D0F !important;
-  color: #FDFCF7 !important;
+  background-color: #0B0F17 !important;
+  color: #F8FAFC !important;
 }
 
-/* Surface Overrides */
+/* Deep Canvas & Background Overrides in Dark Mode */
 html.dark .bg-paper-50,
 .dark .bg-paper-50 {
-  background-color: #0B0D0F !important;
+  background-color: #0B0F17 !important;
 }
 
 html.dark .bg-paper-100,
 .dark .bg-paper-100 {
-  background-color: #14171A !important;
+  background-color: #111827 !important;
 }
 
 html.dark .bg-paper-200,
 .dark .bg-paper-200 {
-  background-color: #1F2328 !important;
+  background-color: #1E293B !important;
 }
 
 html.dark .bg-white,
 .dark .bg-white {
-  background-color: #16181D !important;
+  background-color: #111827 !important;
 }
 
 /* Direct Dark Theme Surfaces */
 html.dark .dark\:bg-ink-950,
 .dark .dark\:bg-ink-950 {
-  background-color: #0B0D0F !important;
+  background-color: #0B0F17 !important;
 }
 
 html.dark .dark\:bg-ink-900,
 .dark .dark\:bg-ink-900 {
-  background-color: #14171A !important;
+  background-color: #111827 !important;
 }
 
 html.dark .dark\:bg-ink-850,
 .dark .dark\:bg-ink-850 {
-  background-color: #1B1F24 !important;
+  background-color: #162032 !important;
 }
 
 html.dark .dark\:bg-ink-800,
 .dark .dark\:bg-ink-800 {
-  background-color: #262B32 !important;
+  background-color: #1E293B !important;
 }
 
 html.dark .dark\:bg-ink-750,
 .dark .dark\:bg-ink-750 {
-  background-color: #323842 !important;
+  background-color: #27354A !important;
 }
 
-/* Borders in Dark Theme */
+/* Borders in Dark Theme - Crisp, refined 1px structure */
 html.dark .border-paper-200,
 .dark .border-paper-200,
 html.dark .border-paper-300,
 .dark .border-paper-300 {
-  border-color: #262B32 !important;
+  border-color: #1E293B !important;
 }
 
 html.dark .dark\:border-ink-800,
 .dark .dark\:border-ink-800 {
-  border-color: #262B32 !important;
+  border-color: #1E293B !important;
 }
 
 html.dark .dark\:border-ink-700,
 .dark .dark\:border-ink-700 {
-  border-color: #323842 !important;
+  border-color: #334155 !important;
 }
 
-/* Typography in Dark Theme */
+/* High-Contrast Typography in Dark Theme */
 html.dark .dark\:text-paper-50,
 .dark .dark\:text-paper-50 {
-  color: #FDFCF7 !important;
+  color: #FFFFFF !important;
 }
 
 html.dark .dark\:text-paper-100,
 .dark .dark\:text-paper-100 {
-  color: #FAF8F2 !important;
+  color: #F8FAFC !important;
 }
 
 html.dark .dark\:text-paper-200,
 .dark .dark\:text-paper-200 {
-  color: #F3EFE6 !important;
+  color: #E2E8F0 !important;
 }
 
 html.dark .dark\:text-paper-300,
 .dark .dark\:text-paper-300 {
-  color: #E8E2D5 !important;
+  color: #CBD5E1 !important;
 }
 
 html.dark .dark\:text-paper-400,
 .dark .dark\:text-paper-400 {
-  color: #D5CCBC !important;
+  color: #94A3B8 !important;
 }
 
 html.dark .dark\:text-academic-300,
 .dark .dark\:text-academic-300 {
-  color: #8FB4DB !important;
+  color: #93C5FD !important;
 }
 
 html.dark .dark\:text-academic-400,
 .dark .dark\:text-academic-400 {
-  color: #6293CA !important;
+  color: #60A5FA !important;
+}
+
+/* All-caps uppercase small labels in dark mode */
+html.dark .text-ink-500,
+.dark .text-ink-500 {
+  color: #94A3B8 !important;
+}
+
+html.dark .text-ink-400,
+.dark .text-ink-400 {
+  color: #64748B !important;
 }
 
 /* Input Fields in Dark Theme */
@@ -148,22 +159,22 @@ html.dark input[type="text"],
 html.dark input[type="number"],
 html.dark textarea,
 html.dark select {
-  background-color: #14171A !important;
-  color: #FDFCF7 !important;
-  border-color: #323842 !important;
+  background-color: #111827 !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
 }
 
 html.dark input::placeholder,
 html.dark textarea::placeholder {
-  color: #757E8E !important;
+  color: #64748B !important;
 }
 
-/* KaTeX Dark Mode Support */
+/* KaTeX Dark Mode Support - Crisp KaTeX formulas */
 html.dark .katex,
 html.dark .katex-html,
 .dark .katex,
 .dark .katex-html {
-  color: #FDFCF7 !important;
+  color: #F8FAFC !important;
 }
 
 html.dark .katex .mord,
@@ -178,7 +189,7 @@ html.dark .katex .mpunct,
 .dark .katex .mopen,
 .dark .katex .mclose,
 .dark .katex .mpunct {
-  color: #FDFCF7 !important;
+  color: #F8FAFC !important;
 }
 
 /* Mathematical workspace styling */

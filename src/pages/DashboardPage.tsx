@@ -68,16 +68,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
       {/* Welcome & Continue Learning Hero Banner */}
-      <div className="bg-paper-100 dark:bg-ink-900 border border-paper-300 dark:border-ink-800 rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-paper-100 dark:bg-slate-900 border border-paper-300 dark:border-slate-800 rounded-xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
         <div className="space-y-2 max-w-xl z-10">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-academic-100 dark:bg-academic-950/60 border border-academic-200 dark:border-academic-800 text-xs font-semibold text-academic-800 dark:text-academic-300">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 text-xs font-semibold text-blue-800 dark:text-blue-300">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Professor Jakow Trachtenberg's System</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-ink-950 dark:text-paper-50 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-ink-950 dark:text-white tracking-tight">
             Mathematics without Memorized Tables
           </h1>
-          <p className="text-sm text-ink-700 dark:text-paper-300 leading-relaxed font-sans">
+          <p className="text-sm text-ink-700 dark:text-slate-300 leading-relaxed font-sans">
             Replace mechanical rote drilling with structural pattern perception. Learn to multiply, divide, and extract roots with remarkable speed and verified precision.
           </p>
           <div className="pt-2 flex flex-wrap items-center gap-3">
@@ -103,22 +103,22 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
         </div>
 
         {/* Current Progress Ring / Summary Card */}
-        <div className="bg-white dark:bg-ink-850 border border-paper-200 dark:border-ink-800 p-5 rounded-lg w-full md:w-64 flex-shrink-0 z-10 space-y-3">
-          <div className="flex items-center justify-between text-xs text-ink-500 font-mono">
+        <div className="bg-white dark:bg-slate-900 border border-paper-200 dark:border-slate-800 p-5 rounded-lg w-full md:w-64 flex-shrink-0 z-10 space-y-3">
+          <div className="flex items-center justify-between text-xs text-ink-500 dark:text-slate-400 font-mono">
             <span>CURRICULUM MASTERY</span>
-            <span>{Math.round((completedCount / totalTechniques) * 100)}%</span>
+            <span className="font-bold text-ink-900 dark:text-white">{Math.round((completedCount / totalTechniques) * 100)}%</span>
           </div>
           <ProgressBar value={completedCount} max={totalTechniques} size="md" variant="academic" />
           <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
-            <div className="bg-paper-50 dark:bg-ink-900 p-2 rounded border border-paper-200 dark:border-ink-800">
-              <span className="text-ink-500 block text-[10px] uppercase font-mono">Completed</span>
-              <strong className="text-base font-serif text-ink-900 dark:text-paper-100">{completedCount}</strong>
-              <span className="text-ink-400 text-[10px]"> / {totalTechniques}</span>
+            <div className="bg-paper-50 dark:bg-slate-800/60 p-2 rounded border border-paper-200 dark:border-slate-700">
+              <span className="text-ink-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Completed</span>
+              <strong className="text-base font-serif text-ink-900 dark:text-white">{completedCount}</strong>
+              <span className="text-ink-400 dark:text-slate-500 text-[10px]"> / {totalTechniques}</span>
             </div>
-            <div className="bg-paper-50 dark:bg-ink-900 p-2 rounded border border-paper-200 dark:border-ink-800">
-              <span className="text-ink-500 block text-[10px] uppercase font-mono">Mastered</span>
+            <div className="bg-paper-50 dark:bg-slate-800/60 p-2 rounded border border-paper-200 dark:border-slate-700">
+              <span className="text-ink-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Mastered</span>
               <strong className="text-base font-serif text-emerald-700 dark:text-emerald-400">{masteredCount}</strong>
-              <span className="text-ink-400 text-[10px]"> / {totalTechniques}</span>
+              <span className="text-ink-400 dark:text-slate-500 text-[10px]"> / {totalTechniques}</span>
             </div>
           </div>
         </div>
@@ -127,42 +127,42 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
       {/* 4 Stat Metric Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-academic-100 dark:bg-academic-950/60 text-academic-800 dark:text-academic-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-950/50 border border-blue-200/60 dark:border-blue-800/60 text-blue-700 dark:text-blue-400 flex items-center justify-center flex-shrink-0">
             <Target className="w-5 h-5" />
           </div>
           <div>
-            <div className="text-xs text-ink-500 font-mono uppercase">Calculations Solved</div>
-            <div className="text-xl font-bold font-serif text-ink-900 dark:text-paper-100">{totalAttempts}</div>
+            <div className="text-xs text-ink-500 dark:text-slate-400 font-mono uppercase">Calculations Solved</div>
+            <div className="text-xl font-bold font-serif text-ink-900 dark:text-white">{totalAttempts}</div>
           </div>
         </Card>
 
         <Card className="p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200/60 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
             <CheckCircle2 className="w-5 h-5" />
           </div>
           <div>
-            <div className="text-xs text-ink-500 font-mono uppercase">Overall Accuracy</div>
-            <div className="text-xl font-bold font-serif text-ink-900 dark:text-paper-100">{overallAccuracy}%</div>
+            <div className="text-xs text-ink-500 dark:text-slate-400 font-mono uppercase">Overall Accuracy</div>
+            <div className="text-xl font-bold font-serif text-ink-900 dark:text-white">{overallAccuracy}%</div>
           </div>
         </Card>
 
         <Card className="p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-sky-50 dark:bg-sky-950/50 border border-sky-200/60 dark:border-sky-800/60 text-sky-700 dark:text-sky-400 flex items-center justify-center flex-shrink-0">
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <div className="text-xs text-ink-500 font-mono uppercase">Avg Speed / Digit</div>
-            <div className="text-xl font-bold font-serif text-ink-900 dark:text-paper-100">{avgTimeSec}s</div>
+            <div className="text-xs text-ink-500 dark:text-slate-400 font-mono uppercase">Avg Speed / Digit</div>
+            <div className="text-xl font-bold font-serif text-ink-900 dark:text-white">{avgTimeSec}s</div>
           </div>
         </Card>
 
         <Card className="p-4 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/50 border border-amber-200/60 dark:border-amber-800/60 text-amber-700 dark:text-amber-400 flex items-center justify-center flex-shrink-0">
             <Award className="w-5 h-5" />
           </div>
           <div>
-            <div className="text-xs text-ink-500 font-mono uppercase">Proficient Techniques</div>
-            <div className="text-xl font-bold font-serif text-ink-900 dark:text-paper-100">{proficientCount + masteredCount}</div>
+            <div className="text-xs text-ink-500 dark:text-slate-400 font-mono uppercase">Proficient Techniques</div>
+            <div className="text-xl font-bold font-serif text-ink-900 dark:text-white">{proficientCount + masteredCount}</div>
           </div>
         </Card>
       </div>
@@ -172,31 +172,31 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
         {/* Left 2 Columns: Current Chapter & Recommended Next Lesson */}
         <div className="lg:col-span-2 space-y-6">
           {/* Current Chapter Section */}
-          <div className="bg-white dark:bg-ink-850 border border-paper-300 dark:border-ink-800 rounded-lg p-5">
-            <div className="flex items-center justify-between mb-3 border-b border-paper-200 dark:border-ink-800 pb-2">
+          <div className="bg-white dark:bg-slate-900 border border-paper-300 dark:border-slate-800 rounded-lg p-5">
+            <div className="flex items-center justify-between mb-3 border-b border-paper-200 dark:border-slate-800 pb-2">
               <div>
-                <span className="text-xs font-mono text-academic-700 dark:text-academic-400 font-semibold uppercase">
+                <span className="text-xs font-mono text-academic-700 dark:text-blue-400 font-semibold uppercase">
                   Current Chapter {currentChapter.id}
                 </span>
-                <h2 className="text-lg font-serif font-bold text-ink-900 dark:text-paper-100">
+                <h2 className="text-lg font-serif font-bold text-ink-900 dark:text-white">
                   {currentChapter.title}
                 </h2>
               </div>
               <Link
                 to={`/learn/${currentChapter.id}`}
-                className="text-xs text-academic-700 dark:text-academic-400 font-medium hover:underline flex items-center gap-1"
+                className="text-xs text-academic-700 dark:text-blue-400 font-medium hover:underline flex items-center gap-1"
               >
                 <span>Read Chapter</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
-            <p className="text-xs text-ink-600 dark:text-paper-300 leading-relaxed mb-4">
+            <p className="text-xs text-ink-600 dark:text-slate-300 leading-relaxed mb-4">
               {currentChapter.introduction}
             </p>
 
             {/* Techniques in this chapter preview */}
             <div className="space-y-2">
-              <span className="text-[11px] font-mono text-ink-500 uppercase tracking-wider block">
+              <span className="text-[11px] font-mono text-ink-500 dark:text-slate-400 uppercase tracking-wider block">
                 Chapter Techniques:
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -211,15 +211,15 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
                       onClick={() => navigate(`/technique/${techId}`)}
                       className={`p-2.5 rounded border text-xs cursor-pointer transition-colors flex items-center justify-between ${
                         isCurr
-                          ? 'border-academic-500 bg-academic-50/50 dark:bg-academic-950/30'
-                          : 'border-paper-200 dark:border-ink-800 hover:bg-paper-100 dark:hover:bg-ink-800'
+                          ? 'border-blue-500/80 bg-blue-50 dark:bg-blue-950/40 text-blue-950 dark:text-blue-200 ring-1 ring-blue-500/30'
+                          : 'border-paper-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-paper-100 dark:hover:bg-slate-800/70 text-ink-800 dark:text-slate-200'
                       }`}
                     >
                       <div className="flex items-center gap-2">
                         {isDone ? (
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
                         ) : (
-                          <div className="w-3.5 h-3.5 rounded-full border border-paper-400 dark:border-ink-600 flex-shrink-0" />
+                          <div className="w-3.5 h-3.5 rounded-full border border-paper-400 dark:border-slate-600 flex-shrink-0" />
                         )}
                         <span className="font-medium truncate">{tech.shortName}</span>
                       </div>
@@ -232,15 +232,15 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
           </div>
 
           {/* Recommended Next Lesson Card */}
-          <div className="bg-paper-100 dark:bg-ink-900 border border-paper-300 dark:border-ink-800 rounded-lg p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="bg-paper-100 dark:bg-slate-900 border border-paper-300 dark:border-slate-800 rounded-lg p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-academic-700 dark:text-academic-400 font-bold">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-academic-700 dark:text-blue-400 font-bold">
                 Recommended Next Technique
               </span>
-              <h3 className="text-base font-serif font-bold text-ink-900 dark:text-paper-100">
+              <h3 className="text-base font-serif font-bold text-ink-900 dark:text-white">
                 {recommendedTech.name}
               </h3>
-              <p className="text-xs text-ink-600 dark:text-paper-400 line-clamp-1">
+              <p className="text-xs text-ink-600 dark:text-slate-300 line-clamp-1">
                 {recommendedTech.summary}
               </p>
             </div>
@@ -257,7 +257,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
           {/* Recently Studied Section */}
           {recentlyStudied.length > 0 && (
             <div className="space-y-3">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-ink-500 font-semibold">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-ink-500 dark:text-slate-400 font-semibold">
                 Recently Practiced
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -271,13 +271,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
                       className="p-3.5"
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-mono text-ink-400">Ch. {tech.chapterId}</span>
+                        <span className="text-xs font-mono text-ink-400 dark:text-slate-500">Ch. {tech.chapterId}</span>
                         <MasteryBadge level={data?.level || 'learning'} />
                       </div>
-                      <h4 className="text-sm font-semibold text-ink-900 dark:text-paper-100 truncate">
+                      <h4 className="text-sm font-semibold text-ink-900 dark:text-white truncate">
                         {tech.shortName}
                       </h4>
-                      <div className="text-[11px] text-ink-500 mt-1 font-mono">
+                      <div className="text-[11px] text-ink-500 dark:text-slate-400 mt-1 font-mono">
                         {data?.correct || 0} / {data?.attempts || 0} correct • {data?.averageTimeMs ? (data.averageTimeMs / 1000).toFixed(1) : '0'}s avg
                       </div>
                     </Card>
@@ -291,15 +291,15 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
         {/* Right 1 Column: Daily Practice, Weak Areas, Speed Trainer Teaser */}
         <div className="space-y-6">
           {/* Daily Practice Challenge */}
-          <Card className="p-5 bg-gradient-to-br from-paper-50 to-paper-100 dark:from-ink-900 dark:to-ink-850 border-paper-300 dark:border-ink-800">
-            <div className="flex items-center gap-2 text-academic-700 dark:text-academic-400 mb-2">
+          <Card className="p-5 bg-gradient-to-br from-paper-50 to-paper-100 dark:from-slate-900 dark:to-slate-800/80 border-paper-300 dark:border-slate-800">
+            <div className="flex items-center gap-2 text-academic-700 dark:text-blue-400 mb-2">
               <Zap className="w-4 h-4" />
               <span className="text-xs font-mono uppercase tracking-wider font-bold">Daily Speed Drill</span>
             </div>
-            <h3 className="text-base font-serif font-bold text-ink-900 dark:text-paper-100 mb-1">
+            <h3 className="text-base font-serif font-bold text-ink-900 dark:text-white mb-1">
               5-Minute Arithmetic Focus
             </h3>
-            <p className="text-xs text-ink-600 dark:text-paper-400 mb-4 leading-relaxed">
+            <p className="text-xs text-ink-600 dark:text-slate-300 mb-4 leading-relaxed">
               Maintain neuromuscular reflexes: solve 10 mixed single-digit key calculations without verbal counting.
             </p>
             <Button
@@ -313,19 +313,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
           </Card>
 
           {/* Weak Areas / Need Revision */}
-          <div className="bg-white dark:bg-ink-850 border border-paper-300 dark:border-ink-800 rounded-lg p-5">
+          <div className="bg-white dark:bg-slate-900 border border-paper-300 dark:border-slate-800 rounded-lg p-5">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-ink-500 dark:text-slate-400 font-semibold flex items-center gap-1.5">
                 <RotateCcw className="w-3.5 h-3.5" />
                 Focus & Revision Areas
               </h3>
-              <Link to="/revision" className="text-xs text-academic-700 dark:text-academic-400 hover:underline">
+              <Link to="/revision" className="text-xs text-academic-700 dark:text-blue-400 hover:underline">
                 View all
               </Link>
             </div>
             {weakAreas.length === 0 ? (
-              <div className="py-6 text-center text-xs text-ink-500">
-                <CheckCircle2 className="w-6 h-6 text-emerald-600 mx-auto mb-1 opacity-80" />
+              <div className="py-6 text-center text-xs text-ink-500 dark:text-slate-400">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500 mx-auto mb-1 opacity-80" />
                 No weak areas detected! Keep up the consistent practice.
               </div>
             ) : (
@@ -334,7 +334,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
                   <div
                     key={tech.id}
                     onClick={() => navigate(`/technique/${tech.id}`)}
-                    className="p-2 rounded border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 text-xs cursor-pointer hover:bg-rose-100/50 transition-colors"
+                    className="p-2 rounded border border-rose-200 dark:border-rose-900/60 bg-rose-50/50 dark:bg-rose-950/20 text-xs cursor-pointer hover:bg-rose-100/50 dark:hover:bg-rose-950/40 transition-colors"
                   >
                     <div className="font-semibold text-rose-900 dark:text-rose-200 truncate">
                       {tech.shortName}
@@ -350,10 +350,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
 
           {/* Speed Trainer Shortcut */}
           <Card className="p-4 text-center">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-ink-500 mb-1">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-ink-500 dark:text-slate-400 mb-1">
               Reflex Speed Trainer
             </h4>
-            <p className="text-xs text-ink-600 dark:text-paper-400 mb-3">
+            <p className="text-xs text-ink-600 dark:text-slate-300 mb-3">
               Measure your calculations per minute against personal records.
             </p>
             <Button
@@ -370,4 +370,3 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ progress }) => {
     </div>
   );
 };
-

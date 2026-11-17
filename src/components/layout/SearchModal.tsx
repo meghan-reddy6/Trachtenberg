@@ -96,7 +96,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       <DifficultyBadge difficulty={tech.difficulty} />
                       <span className="text-xs text-ink-400 font-mono">{tech.pageRef}</span>
                     </div>
-                    <h4 className="text-sm font-semibold text-ink-900 dark:text-paper-100 group-hover:text-academic-700 dark:group-hover:text-academic-400 transition-colors">
+                    <h4 className="text-sm font-semibold text-ink-900 dark:text-white group-hover:text-academic-700 dark:group-hover:text-blue-400 transition-colors">
                       {tech.name}
                     </h4>
                     <p className="text-xs text-ink-500 line-clamp-1 mt-0.5">

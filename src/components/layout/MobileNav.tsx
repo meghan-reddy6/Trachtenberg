@@ -48,13 +48,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
       )}
 
       {/* Persistent Mobile Bottom Navigation Bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 h-14 bg-white/95 dark:bg-ink-900/95 backdrop-blur-xs border-t border-paper-200 dark:border-ink-800 flex items-center justify-around px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 h-14 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs border-t border-paper-200 dark:border-slate-800 flex items-center justify-around px-2">
         <NavLink
           to="/"
           end
           className={({ isActive }) =>
             `flex flex-col items-center justify-center w-14 py-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-academic-700 dark:text-academic-400 font-semibold' : 'text-ink-500 dark:text-paper-400'
+              isActive ? 'text-academic-700 dark:text-blue-400 font-semibold' : 'text-ink-500 dark:text-slate-400'
             }`
           }
         >
@@ -66,7 +66,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
           to="/learn"
           className={({ isActive }) =>
             `flex flex-col items-center justify-center w-14 py-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-academic-700 dark:text-academic-400 font-semibold' : 'text-ink-500 dark:text-paper-400'
+              isActive ? 'text-academic-700 dark:text-blue-400 font-semibold' : 'text-ink-500 dark:text-slate-400'
             }`
           }
         >
@@ -78,7 +78,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
           to="/practice"
           className={({ isActive }) =>
             `flex flex-col items-center justify-center w-14 py-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-academic-700 dark:text-academic-400 font-semibold' : 'text-ink-500 dark:text-paper-400'
+              isActive ? 'text-academic-700 dark:text-blue-400 font-semibold' : 'text-ink-500 dark:text-slate-400'
             }`
           }
         >
@@ -90,7 +90,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
           to="/speed-trainer"
           className={({ isActive }) =>
             `flex flex-col items-center justify-center w-14 py-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-academic-700 dark:text-academic-400 font-semibold' : 'text-ink-500 dark:text-paper-400'
+              isActive ? 'text-academic-700 dark:text-blue-400 font-semibold' : 'text-ink-500 dark:text-slate-400'
             }`
           }
         >
@@ -102,7 +102,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
           to="/library"
           className={({ isActive }) =>
             `flex flex-col items-center justify-center w-14 py-1 text-[10px] font-medium transition-colors ${
-              isActive ? 'text-academic-700 dark:text-academic-400 font-semibold' : 'text-ink-500 dark:text-paper-400'
+              isActive ? 'text-academic-700 dark:text-blue-400 font-semibold' : 'text-ink-500 dark:text-slate-400'
             }`
           }
         >

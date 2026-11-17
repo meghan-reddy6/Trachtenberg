@@ -215,8 +215,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
             <h3 className="text-base font-serif font-bold text-ink-950 dark:text-paper-50">
               Developer Credits & Support
             </h3>
-            <p className="text-xs text-ink-600 dark:text-paper-300 max-w-xl leading-relaxed">
-              This interactive platform was architected and built by <strong>Meghan</strong> (<a href="https://github.com/meghan-reddy6" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-academic-400 font-semibold underline">@meghan-reddy6</a>), creator of <a href="https://meghan-reddy6.github.io/codetocompute/" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-academic-400 font-semibold underline">CodeToCompute</a>. If this educational software helped sharpen your calculation reflexes, support future open-source developments with a cup of chai!
+            <p className="text-xs text-ink-600 dark:text-slate-300 max-w-xl leading-relaxed">
+              This interactive platform was architected and built by <strong>Meghan</strong> (<a href="https://github.com/meghan-reddy6" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">@meghan-reddy6</a>), creator of <a href="https://meghan-reddy6.github.io/codetocompute/" target="_blank" rel="noopener noreferrer" className="text-academic-700 dark:text-blue-400 font-semibold underline">CodeToCompute</a>. If this educational software helped sharpen your calculation reflexes, support future open-source developments with a cup of chai!
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-2 flex-shrink-0">
@@ -224,7 +224,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ progress, onUpdatePr
               href="https://www.buymeachai.in/meghansai6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs font-bold shadow-xs hover:shadow transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white dark:bg-amber-500 dark:hover:bg-amber-400 dark:text-slate-950 text-xs font-bold shadow-xs hover:shadow transition-all"
             >
               <Coffee className="w-4 h-4" /> Support on Buy Me a Chai ☕
             </a>

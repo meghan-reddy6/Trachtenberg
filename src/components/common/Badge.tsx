@@ -10,27 +10,27 @@ export const DifficultyBadge: React.FC<DifficultyBadgeProps> = ({ difficulty, cl
   const styles: Record<Difficulty, { label: string; bg: string; text: string; border: string }> = {
     beginner: {
       label: 'Beginner',
-      bg: 'bg-emerald-50 dark:bg-emerald-950/40',
+      bg: 'bg-emerald-50 dark:bg-emerald-950/50',
       text: 'text-emerald-800 dark:text-emerald-300',
-      border: 'border-emerald-200 dark:border-emerald-800/60'
+      border: 'border-emerald-200 dark:border-emerald-700/60'
     },
     intermediate: {
       label: 'Intermediate',
-      bg: 'bg-sky-50 dark:bg-sky-950/40',
+      bg: 'bg-sky-50 dark:bg-sky-950/50',
       text: 'text-sky-800 dark:text-sky-300',
-      border: 'border-sky-200 dark:border-sky-800/60'
+      border: 'border-sky-200 dark:border-sky-700/60'
     },
     advanced: {
       label: 'Advanced',
-      bg: 'bg-amber-50 dark:bg-amber-950/40',
+      bg: 'bg-amber-50 dark:bg-amber-950/50',
       text: 'text-amber-800 dark:text-amber-300',
-      border: 'border-amber-200 dark:border-amber-800/60'
+      border: 'border-amber-200 dark:border-amber-700/60'
     },
     expert: {
       label: 'Expert',
-      bg: 'bg-rose-50 dark:bg-rose-950/40',
-      text: 'text-rose-800 dark:text-rose-300',
-      border: 'border-rose-200 dark:border-rose-800/60'
+      bg: 'bg-purple-50 dark:bg-purple-950/50',
+      text: 'text-purple-800 dark:text-purple-300',
+      border: 'border-purple-200 dark:border-purple-700/60'
     }
   };
 
@@ -51,35 +51,40 @@ interface MasteryBadgeProps {
 }
 
 export const MasteryBadge: React.FC<MasteryBadgeProps> = ({ level, className = '' }) => {
-  const styles: Record<MasteryLevel, { label: string; bg: string; text: string; dot: string }> = {
+  const styles: Record<MasteryLevel, { label: string; bg: string; text: string; dot: string; border: string }> = {
     'not-started': {
       label: 'Not Started',
-      bg: 'bg-paper-100 dark:bg-ink-800 text-ink-600 dark:text-paper-400',
-      text: 'text-ink-600 dark:text-paper-400',
-      dot: 'bg-ink-400'
+      bg: 'bg-paper-100 dark:bg-slate-800',
+      text: 'text-ink-600 dark:text-slate-400',
+      border: 'border-paper-200 dark:border-slate-700',
+      dot: 'bg-slate-400'
     },
     learning: {
       label: 'Learning',
-      bg: 'bg-academic-50 dark:bg-academic-950/40 text-academic-700 dark:text-academic-300 border border-academic-200 dark:border-academic-800',
-      text: 'text-academic-700 dark:text-academic-300',
-      dot: 'bg-academic-500'
+      bg: 'bg-blue-50 dark:bg-blue-950/50',
+      text: 'text-blue-700 dark:text-blue-300',
+      border: 'border-blue-200 dark:border-blue-800/60',
+      dot: 'bg-blue-500'
     },
     practising: {
       label: 'Practising',
-      bg: 'bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800',
+      bg: 'bg-sky-50 dark:bg-sky-950/50',
       text: 'text-sky-700 dark:text-sky-300',
+      border: 'border-sky-200 dark:border-sky-800/60',
       dot: 'bg-sky-500'
     },
     proficient: {
       label: 'Proficient',
-      bg: 'bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800',
+      bg: 'bg-teal-50 dark:bg-teal-950/50',
       text: 'text-teal-700 dark:text-teal-300',
+      border: 'border-teal-200 dark:border-teal-800/60',
       dot: 'bg-teal-500'
     },
     mastered: {
       label: 'Mastered',
-      bg: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800',
+      bg: 'bg-emerald-50 dark:bg-emerald-950/50',
       text: 'text-emerald-700 dark:text-emerald-300',
+      border: 'border-emerald-200 dark:border-emerald-800/60',
       dot: 'bg-emerald-500'
     }
   };
@@ -88,11 +93,10 @@ export const MasteryBadge: React.FC<MasteryBadgeProps> = ({ level, className = '
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${current.bg} ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${current.bg} ${current.text} ${current.border} ${className}`}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${current.dot}`} />
       {current.label}
     </span>
   );
 };
-

@@ -220,8 +220,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ progress, onUpdatePr
                   onClick={() => setDifficulty(d)}
                   className={`p-3 rounded-lg border text-center transition-all ${
                     difficulty === d
-                      ? 'border-academic-600 bg-academic-50 dark:bg-academic-950/40 text-academic-900 dark:text-academic-200 font-bold ring-2 ring-academic-500/20'
-                      : 'border-paper-300 dark:border-ink-700 bg-paper-50 dark:bg-ink-900 text-ink-700 dark:text-paper-300 hover:bg-paper-100'
+                      ? 'border-academic-600 bg-academic-50 dark:bg-blue-950/50 text-academic-900 dark:text-blue-200 font-bold ring-2 ring-academic-500/20 dark:border-blue-500'
+                      : 'border-paper-300 dark:border-slate-800 bg-paper-50 dark:bg-slate-900 text-ink-700 dark:text-slate-300 hover:bg-paper-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   <span className="capitalize text-xs font-semibold block">{d}</span>
@@ -249,8 +249,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ progress, onUpdatePr
                   onClick={() => setQuestionCount(cnt)}
                   className={`px-4 py-2 rounded-lg border text-xs font-mono font-bold transition-all ${
                     questionCount === cnt
-                      ? 'border-academic-600 bg-academic-700 text-white'
-                      : 'border-paper-300 dark:border-ink-700 bg-paper-50 dark:bg-ink-900 text-ink-700 dark:text-paper-300 hover:bg-paper-100'
+                      ? 'border-academic-600 bg-academic-700 text-white dark:bg-blue-600 dark:border-blue-500'
+                      : 'border-paper-300 dark:border-slate-800 bg-paper-50 dark:bg-slate-900 text-ink-700 dark:text-slate-300 hover:bg-paper-100 dark:hover:bg-slate-800'
                   }`}
                 >
                   {cnt} Questions

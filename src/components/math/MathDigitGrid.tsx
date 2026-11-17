@@ -51,18 +51,18 @@ export const MathDigitGrid: React.FC<MathDigitGridProps> = ({
   const getHighlightClasses = (type: string) => {
     switch (type) {
       case 'current':
-        return 'bg-academic-100 text-academic-900 border-academic-500 font-bold dark:bg-academic-950 dark:text-academic-200 dark:border-academic-400 ring-2 ring-academic-500/40';
+        return 'bg-academic-100 text-academic-900 border-academic-500 font-bold dark:bg-blue-900/60 dark:text-blue-200 dark:border-blue-400 ring-2 ring-blue-500/40';
       case 'neighbor':
-        return 'bg-amber-100 text-amber-900 border-amber-500 font-bold dark:bg-amber-950 dark:text-amber-200 dark:border-amber-400 ring-2 ring-amber-500/40';
+        return 'bg-amber-100 text-amber-900 border-amber-500 font-bold dark:bg-amber-900/60 dark:text-amber-200 dark:border-amber-400 ring-2 ring-amber-500/40';
       case 'outside':
       case 'secondary':
-        return 'bg-sky-100 text-sky-900 border-sky-500 font-bold dark:bg-sky-950 dark:text-sky-200 dark:border-sky-400 ring-2 ring-sky-500/40';
+        return 'bg-sky-100 text-sky-900 border-sky-500 font-bold dark:bg-sky-900/60 dark:text-sky-200 dark:border-sky-400 ring-2 ring-sky-500/40';
       case 'inside':
-        return 'bg-purple-100 text-purple-900 border-purple-500 font-bold dark:bg-purple-950 dark:text-purple-200 dark:border-purple-400 ring-2 ring-purple-500/40';
+        return 'bg-purple-100 text-purple-900 border-purple-500 font-bold dark:bg-purple-900/60 dark:text-purple-200 dark:border-purple-400 ring-2 ring-purple-500/40';
       case 'produced':
-        return 'bg-emerald-100 text-emerald-900 border-emerald-500 font-bold dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-400 ring-2 ring-emerald-500/40';
+        return 'bg-emerald-100 text-emerald-900 border-emerald-500 font-bold dark:bg-emerald-900/60 dark:text-emerald-200 dark:border-emerald-400 ring-2 ring-emerald-500/40';
       default:
-        return 'bg-paper-100 text-ink-900 border-paper-300 dark:bg-ink-800 dark:text-paper-100 dark:border-ink-700';
+        return 'bg-paper-100 text-ink-900 border-paper-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700';
     }
   };
 
@@ -76,7 +76,7 @@ export const MathDigitGrid: React.FC<MathDigitGridProps> = ({
             <div key={`lbl-${idx}`} className="w-8 sm:w-10 text-center text-[10px] uppercase tracking-wider font-sans font-semibold">
               {hl?.label && (
                 <span className={`inline-block px-1 py-0.5 rounded text-[9px] ${
-                  hl.type === 'current' ? 'text-academic-700 dark:text-academic-300 bg-academic-100 dark:bg-academic-900/60' :
+                  hl.type === 'current' ? 'text-academic-700 dark:text-blue-300 bg-academic-100 dark:bg-blue-900/60' :
                   hl.type === 'neighbor' ? 'text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/60' :
                   'text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-900/60'
                 }`}>
