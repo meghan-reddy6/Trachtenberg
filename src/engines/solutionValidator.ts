@@ -10,10 +10,27 @@ export interface ValidationFeedback {
 }
 
 /**
- * Normalizes user input (stripping commas, spaces, case)
+ * Normalizes user input (stripping commas, spaces, case, and normalizing remainder notations)
  */
 export function normalizeAnswer(ans: string): string {
-  return ans.trim().replace(/,/g, '').replace(/\s+/g, ' ').toUpperCase();
+  if (!ans) return '';
+  const trimmed = ans.trim();
+  const withRem = trimmed
+    .replace(/\bremainder\b/gi, 'R')
+    .replace(/\brem\b/gi, 'R')
+    .replace(/(\d+)\s*[rR]\s*(\d+)/g, '$1 R $2');
+
+  if (/[rR]/.test(withRem)) {
+    return withRem.replace(/,/g, '').replace(/\s+/g, ' ').toUpperCase();
+  }
+  return withRem.replace(/[\s,]+/g, '').toUpperCase();
+}
+
+/**
+ * Direct comparison check between user answer and expected answer
+ */
+export function validateAnswer(userAnswer: string, expectedAnswer: string): boolean {
+  return normalizeAnswer(userAnswer) === normalizeAnswer(expectedAnswer);
 }
 
 /**

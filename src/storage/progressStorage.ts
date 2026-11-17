@@ -19,16 +19,37 @@ export const defaultProgress: UserProgress = {
   }
 };
 
+export function sanitizeProgress(parsed: any): UserProgress {
+  if (!parsed || typeof parsed !== 'object') {
+    return defaultProgress;
+  }
+  return {
+    version: CURRENT_VERSION,
+    lastUpdated: typeof parsed.lastUpdated === 'string' ? parsed.lastUpdated : new Date().toISOString(),
+    currentTechniqueId: typeof parsed.currentTechniqueId === 'string' ? parsed.currentTechniqueId : defaultProgress.currentTechniqueId,
+    completedTechniqueIds: Array.isArray(parsed.completedTechniqueIds)
+      ? parsed.completedTechniqueIds.filter((x: any) => typeof x === 'string')
+      : [],
+    bookmarkedTechniqueIds: Array.isArray(parsed.bookmarkedTechniqueIds)
+      ? parsed.bookmarkedTechniqueIds.filter((x: any) => typeof x === 'string')
+      : [],
+    mastery: typeof parsed.mastery === 'object' && parsed.mastery !== null ? parsed.mastery : {},
+    speedTrainerRecords: Array.isArray(parsed.speedTrainerRecords) ? parsed.speedTrainerRecords : [],
+    settings: {
+      theme: parsed.settings?.theme === 'dark' ? 'dark' : 'light',
+      mathFontSize: parsed.settings?.mathFontSize || 'standard',
+      hapticsOrSound: typeof parsed.settings?.hapticsOrSound === 'boolean' ? parsed.settings.hapticsOrSound : true,
+      autoAdvanceStep: typeof parsed.settings?.autoAdvanceStep === 'boolean' ? parsed.settings.autoAdvanceStep : false,
+    }
+  };
+}
+
 export function loadUserProgress(): UserProgress {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultProgress;
-    const parsed = JSON.parse(raw) as UserProgress;
-    if (!parsed.version || parsed.version < CURRENT_VERSION) {
-      // Future migration logic if version changes
-      return { ...defaultProgress, ...parsed, version: CURRENT_VERSION };
-    }
-    return parsed;
+    const parsed = JSON.parse(raw);
+    return sanitizeProgress(parsed);
   } catch (e) {
     console.error('Failed to load user progress:', e);
     return defaultProgress;
@@ -142,17 +163,13 @@ export function exportProgressToJson(progress: UserProgress): string {
 
 export function importProgressFromJson(jsonStr: string): UserProgress {
   try {
-    const parsed = JSON.parse(jsonStr) as UserProgress;
-    if (!parsed || typeof parsed !== 'object' || !parsed.version) {
-      throw new Error('Invalid format: missing version or invalid JSON structure');
+    const parsed = JSON.parse(jsonStr);
+    if (!parsed || typeof parsed !== 'object') {
+      throw new Error('Invalid format: JSON payload must be a non-null object');
     }
-    const merged: UserProgress = {
-      ...defaultProgress,
-      ...parsed,
-      version: CURRENT_VERSION
-    };
-    saveUserProgress(merged);
-    return merged;
+    const sanitized = sanitizeProgress(parsed);
+    saveUserProgress(sanitized);
+    return sanitized;
   } catch (err: any) {
     throw new Error(`Failed to import progress: ${err.message}`);
   }

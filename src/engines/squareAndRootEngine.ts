@@ -277,6 +277,24 @@ export function squareThreeDigit(num: number): SquaringResult {
 }
 
 /**
+ * Exact integer square root using Newton-Raphson method on BigInt.
+ */
+export function bigIntSqrt(n: bigint): bigint {
+  if (n < 0n) throw new Error('Square root of negative number');
+  if (n < 2n) return n;
+  let x0 = n / 2n;
+  if (x0 !== 0n) {
+    let x1 = (x0 + n / x0) / 2n;
+    while (x1 < x0) {
+      x0 = x1;
+      x1 = (x0 + n / x0) / 2n;
+    }
+    return x0;
+  }
+  return 1n;
+}
+
+/**
  * Trachtenberg Square Root Engine (pp. 197-225)
  * Handles arbitrary inputs, groups digits by pairs from right,
  * computes exact root and remainder with full step-by-step Trachtenberg procedures.
@@ -286,7 +304,7 @@ export function calculateTrachtenbergSquareRoot(numStr: string): SquareRootResul
   if (!clean) throw new Error('Invalid number for square root');
 
   const N = BigInt(clean);
-  const actualRoot = BigInt(Math.floor(Math.sqrt(Number(N))));
+  const actualRoot = bigIntSqrt(N);
   const actualRemainder = N - actualRoot * actualRoot;
 
   // Group into pairs from the right

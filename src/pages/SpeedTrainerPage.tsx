@@ -30,6 +30,26 @@ export const SpeedTrainerPage: React.FC<SpeedTrainerPageProps> = ({ progress, on
   const [totalAttempted, setTotalAttempted] = useState<number>(0);
 
   const timerRef = useRef<any>(null);
+  const elapsedSecRef = useRef<number>(0);
+  const scoreRef = useRef<number>(0);
+  const totalAttemptedRef = useRef<number>(0);
+  const bestStreakRef = useRef<number>(0);
+
+  useEffect(() => {
+    elapsedSecRef.current = elapsedSec;
+  }, [elapsedSec]);
+
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
+
+  useEffect(() => {
+    totalAttemptedRef.current = totalAttempted;
+  }, [totalAttempted]);
+
+  useEffect(() => {
+    bestStreakRef.current = bestStreak;
+  }, [bestStreak]);
 
   // Category mapping
   const getNextQuestion = () => {
@@ -67,7 +87,6 @@ export const SpeedTrainerPage: React.FC<SpeedTrainerPageProps> = ({ progress, on
         if (mode === '60s' || mode === '120s') {
           setTimeLeft(prev => {
             if (prev <= 1) {
-              endTrainer();
               return 0;
             }
             return prev - 1;
@@ -83,21 +102,30 @@ export const SpeedTrainerPage: React.FC<SpeedTrainerPageProps> = ({ progress, on
     };
   }, [isActive, mode]);
 
+  // Handle countdown timer reaching zero
+  useEffect(() => {
+    if (isActive && (mode === '60s' || mode === '120s') && timeLeft === 0) {
+      endTrainer();
+    }
+  }, [isActive, mode, timeLeft]);
+
   const endTrainer = () => {
     setIsActive(false);
     setIsFinished(true);
     if (timerRef.current) clearInterval(timerRef.current);
 
-    // Save record if completed
-    const finalElapsed = elapsedSec || 1;
-    const qpm = Math.round((score / (finalElapsed / 60)) * 10) / 10;
-    const acc = totalAttempted > 0 ? Math.round((score / totalAttempted) * 100) : 0;
+    // Save record if completed using fresh refs
+    const finalElapsed = elapsedSecRef.current || 1;
+    const currentScore = scoreRef.current;
+    const currentTotal = totalAttemptedRef.current;
+    const qpm = Math.round((currentScore / (finalElapsed / 60)) * 10) / 10;
+    const acc = currentTotal > 0 ? Math.round((currentScore / currentTotal) * 100) : 0;
 
     const newRecord = {
       techniqueCategory: category,
       questionsPerMin: qpm,
       accuracyPercent: acc,
-      bestStreak,
+      bestStreak: bestStreakRef.current,
       date: new Date().toISOString()
     };
 

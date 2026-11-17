@@ -185,6 +185,23 @@ export function generateQuestionForTechnique(
     steps = calc.steps.map(s => `Step ${s.stepIndex}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
     explanation = `0${num} × 8 = ${calc.answerString}.`;
   }
+  else if (techniqueId.startsWith('tech-108')) {
+    // Pattern Diagrams for 8 and 9
+    const mult = Math.random() > 0.5 ? 8 : 9;
+    let num = getRandomInt(20, 999);
+    const calc = calculateSingleDigitTrachtenberg(num.toString(), mult);
+    prompt = `Multiply ${num.toLocaleString()} by ${mult} using the Trachtenberg complement pattern diagram rule.`;
+    expression = `${num} × ${mult}`;
+    correctAnswer = calc.answerString;
+    operands = { a: num, b: mult, op: '×' };
+    hints = [
+      `Rule for ${mult}: Complements from 10 (first figure) and 9 (middle figures) plus neighbor${mult === 8 ? ' (doubled)' : ''}.`,
+      `First figure from right: ${mult === 8 ? '2 × ' : ''}(10 - ${num % 10}).`,
+      `Middle figures: ${mult === 8 ? '2 × ' : ''}(9 - digit) + neighbor + carry.`
+    ];
+    steps = calc.steps.map(s => `Step ${s.stepIndex}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
+    explanation = `Pattern diagram calculation: 0${num} × ${mult} = ${calc.answerString}.`;
+  }
   else if (techniqueId.startsWith('tech-109')) {
     // Multiply by 4
     let num = 0;
@@ -227,20 +244,51 @@ export function generateQuestionForTechnique(
     steps = calc.steps.map(s => `Step ${s.stepIndex}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
     explanation = `0${num} × 3 = ${calc.answerString}.`;
   }
-  // CHAPTER 2: DIRECT METHOD
-  else if (techniqueId.startsWith('tech-201') || techniqueId.startsWith('tech-202') || techniqueId.startsWith('tech-204') || techniqueId.startsWith('tech-205')) {
+  else if (techniqueId.startsWith('tech-111')) {
+    // Multiplication by 2, 1, 0 & Assembly
+    let num = getRandomInt(100, 9999);
+    const calc = calculateSingleDigitTrachtenberg(num.toString(), 2);
+    prompt = `Multiply ${num.toLocaleString()} by 2 using the Trachtenberg rule (double each digit with carry, no neighbor).`;
+    expression = `${num} × 2`;
+    correctAnswer = calc.answerString;
+    operands = { a: num, b: 2, op: '×' };
+    hints = [
+      'Rule for 2: Double each digit in turn, adding any carry from the right. No neighbor is used.',
+      `First step: 2 × ${num % 10}. Put down units, carry tens.`,
+      `Continue doubling each digit to the left plus carry.`
+    ];
+    steps = calc.steps.map(s => `Step ${s.stepIndex}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
+    explanation = `0${num} × 2 = ${calc.answerString}.`;
+  }
+  // CHAPTER 2: DIRECT METHOD (tech-201 through tech-207)
+  else if (techniqueId.startsWith('tech-2')) {
     let a = 0;
     let b = 0;
-    if (techniqueId.startsWith('tech-201')) {
+    if (techniqueId === 'tech-201') {
       // 2x2
       a = getRandomInt(13, 98);
       b = getRandomInt(12, 45);
-    } else if (techniqueId.startsWith('tech-202')) {
-      // Long x 2-digit
-      a = getRandomInt(100, 9999);
+    } else if (techniqueId === 'tech-202') {
+      // 3-digit x 2-digit
+      a = getRandomInt(100, 999);
       b = getRandomInt(12, 65);
+    } else if (techniqueId === 'tech-203') {
+      // Long multiplicand x 2-digit
+      a = getRandomInt(10000, 99999);
+      b = getRandomInt(12, 88);
+    } else if (techniqueId === 'tech-205') {
+      // Zero in multiplicand
+      const p1 = getRandomInt(1, 9);
+      const p2 = getRandomInt(1, 9);
+      a = p1 * 100 + p2;
+      b = getRandomInt(12, 54);
+    } else if (techniqueId === 'tech-206') {
+      // Terminal zeroes
+      const base = getRandomInt(12, 99);
+      a = base * 100;
+      b = getRandomInt(11, 45) * 10;
     } else {
-      // 3-digit x 3-digit or longer
+      // tech-204 & general 3-digit x 3-digit
       a = getRandomInt(112, 999);
       b = getRandomInt(111, 432);
     }
@@ -258,11 +306,11 @@ export function generateQuestionForTechnique(
     steps = calc.steps.map(s => `${s.description}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
     explanation = `Direct Method calculation: ${a} × ${b} = ${calc.answerString}.`;
   }
-  // CHAPTER 3: TWO-FINGER METHOD
-  else if (techniqueId.startsWith('tech-301') || techniqueId.startsWith('tech-302') || techniqueId.startsWith('tech-303') || techniqueId.startsWith('tech-304')) {
+  // CHAPTER 3: TWO-FINGER METHOD (tech-301 through tech-306)
+  else if (techniqueId.startsWith('tech-3')) {
     let a = 0;
     let b = 0;
-    if (techniqueId.startsWith('tech-301')) {
+    if (techniqueId === 'tech-301') {
       // Single pair-product drill
       const dL = getRandomInt(1, 9);
       const dR = getRandomInt(1, 9);
@@ -282,7 +330,7 @@ export function generateQuestionForTechnique(
         `Pair-Product = ${(dL * n) % 10} + ${Math.floor((dR * n) / 10)} = ${pp}`
       ];
       explanation = `The pair-product of [${dL}, ${dR}] × ${n} is ${pp}.`;
-    } else if (techniqueId.startsWith('tech-302')) {
+    } else if (techniqueId === 'tech-302') {
       // Single digit multiplier
       a = getRandomInt(125, 9876);
       b = getRandomInt(3, 9);
@@ -316,32 +364,54 @@ export function generateQuestionForTechnique(
       explanation = `${a} × ${b} = ${calc.answerString}.`;
     }
   }
-  // CHAPTER 4: ADDITION
-  else if (techniqueId.startsWith('tech-401') || techniqueId.startsWith('tech-402')) {
-    const count = difficulty === 'beginner' ? 5 : (difficulty === 'intermediate' ? 7 : 10);
-    const nums: string[] = [];
-    for (let i = 0; i < count; i++) {
-      nums.push(getRandomInt(100, 9999).toString());
+  // CHAPTER 4: ADDITION & CHECKING (tech-401 through tech-404)
+  else if (techniqueId.startsWith('tech-4')) {
+    if (techniqueId === 'tech-404') {
+      const num = getRandomInt(10000, 9999999);
+      const check11 = computeElevensRemainderDetailed(num.toString());
+      prompt = `Find the eleven-remainder of ${num.toLocaleString()} using the alternating sum or pairwise shortcut.`;
+      expression = `${num} mod 11`;
+      correctAnswer = check11.elevensRemainder.toString();
+      hints = [
+        'Elevens remainder: sum every second digit from the right, then subtract the sum of skipped digits.',
+        `Sum of even positions: ${check11.alternatingEvenSum}. Sum of odd positions: ${check11.alternatingOddSum}.`,
+        `Difference = ${check11.alternatingDifference} ≡ ${check11.elevensRemainder} (mod 11).`
+      ];
+      steps = [
+        `Sum of even positions (right to left): ${check11.alternatingEvenSum}`,
+        `Sum of odd positions: ${check11.alternatingOddSum}`,
+        `Difference: ${check11.alternatingEvenSum} - ${check11.alternatingOddSum} = ${check11.alternatingDifference}`,
+        `Reduced modulo 11: ${check11.elevensRemainder}`
+      ];
+      explanation = check11.explanation;
+    } else {
+      const count = difficulty === 'beginner' ? 5 : (difficulty === 'intermediate' ? 7 : 10);
+      const nums: string[] = [];
+      for (let i = 0; i < count; i++) {
+        nums.push(getRandomInt(100, 9999).toString());
+      }
+      const calc = calculateTrachtenbergAddition(nums);
+      prompt = `Add the following ${count} numbers using the Trachtenberg "Never count higher than 11" and L-shaped addition rules:\n${nums.join(', ')}`;
+      expression = nums.join(' + ');
+      correctAnswer = calc.finalTotalString;
+      hints = [
+        'Trachtenberg Addition: Add down each column. When running total reaches 11 or higher, subtract 11, make a tick mark, and continue.',
+        `Record the running total and tick count under each column to form the working table.`,
+        `Final step: Add L-shaped: running total + tick figure + lower-right neighbor tick + carry.`
+      ];
+      steps = [
+        `Running totals row: [${calc.runningTotalsRow.join(', ')}]`,
+        `Tick figures row: [${calc.ticksRow.join(', ')}]`,
+        ...calc.lShapedSteps.map(s => `${s.description}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`)
+      ];
+      explanation = `Total sum is ${calc.finalTotalString}. Verified via column 9-remainders.`;
     }
-    const calc = calculateTrachtenbergAddition(nums);
-    prompt = `Add the following ${count} numbers using the Trachtenberg "Never count higher than 11" and L-shaped addition rules:\n${nums.join(', ')}`;
-    expression = nums.join(' + ');
-    correctAnswer = calc.finalTotalString;
-    hints = [
-      'Trachtenberg Addition: Add down each column. When running total reaches 11 or higher, subtract 11, make a tick mark, and continue.',
-      `Record the running total and tick count under each column to form the working table.`,
-      `Final step: Add L-shaped: running total + tick figure + lower-right neighbor tick + carry.`
-    ];
-    steps = [
-      `Running totals row: [${calc.runningTotalsRow.join(', ')}]`,
-      `Tick figures row: [${calc.ticksRow.join(', ')}]`,
-      ...calc.lShapedSteps.map(s => `${s.description}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`)
-    ];
-    explanation = `Total sum is ${calc.finalTotalString}. Verified via column 9-remainders.`;
   }
-  // CHAPTER 5: DIVISION
-  else if (techniqueId.startsWith('tech-501') || techniqueId.startsWith('tech-503') || techniqueId.startsWith('tech-505')) {
-    const divisor = getRandomInt(21, 89);
+  // CHAPTER 5: DIVISION (tech-501 through tech-506)
+  else if (techniqueId.startsWith('tech-5')) {
+    const divisor = techniqueId.startsWith('tech-505') || techniqueId.startsWith('tech-506')
+      ? getRandomInt(112, 450)
+      : getRandomInt(21, 89);
     const quotient = getRandomInt(12, 450);
     const remainder = getRandomInt(0, divisor - 1);
     const dividend = divisor * quotient + remainder;
@@ -359,72 +429,103 @@ export function generateQuestionForTechnique(
     steps = calc.simpleSteps?.map(s => `Step ${s.stepIndex}: Subtracted ${s.subtractedValue} (${s.multipleUsed}×) from ${s.currentSegment} → remainder ${s.remainder}`) || [];
     explanation = `${dividend} ÷ ${divisor} = ${quotient}${remainder > 0 ? ` with remainder ${remainder}` : ''}.`;
   }
-  // CHAPTER 6: SQUARING & SQUARE ROOTS
-  else if (techniqueId.startsWith('tech-601')) {
-    // Special squaring (ends in 5 or 50s)
-    const isEnds5 = Math.random() > 0.5;
-    if (isEnds5) {
-      const tens = getRandomInt(1, 9);
-      const num = tens * 10 + 5;
-      const calc = squareEndsInFive(num);
-      prompt = `Square ${num} using the special rule for numbers ending in 5.`;
+  // CHAPTER 6: SQUARING & SQUARE ROOTS (tech-601 through tech-607)
+  else if (techniqueId.startsWith('tech-6')) {
+    if (techniqueId === 'tech-601') {
+      const isEnds5 = Math.random() > 0.5;
+      if (isEnds5) {
+        const tens = getRandomInt(1, 9);
+        const num = tens * 10 + 5;
+        const calc = squareEndsInFive(num);
+        prompt = `Square ${num} using the special rule for numbers ending in 5.`;
+        expression = `${num}²`;
+        correctAnswer = calc.squaredStr;
+        hints = [
+          'Numbers ending in 5 always end in 25.',
+          `Multiply the tens digit (${tens}) by the next higher number (${tens + 1}).`,
+          `${tens} × ${tens + 1} = ${tens * (tens + 1)}. Attach 25.`
+        ];
+        steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
+        explanation = `${num}² = ${calc.squaredStr}.`;
+      } else {
+        const units = getRandomInt(1, 9);
+        const num = 50 + units;
+        const calc = squareTensDigitFive(num);
+        prompt = `Square ${num} using the special rule for numbers with tens digit 5.`;
+        expression = `${num}²`;
+        correctAnswer = calc.squaredStr;
+        hints = [
+          'For numbers with tens digit 5: first two digits are 25 + units digit; last two digits are units digit squared.',
+          `First two digits: 25 + ${units} = ${25 + units}.`,
+          `Last two digits: ${units}² = ${(units * units).toString().padStart(2, '0')}.`
+        ];
+        steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
+        explanation = `${num}² = ${calc.squaredStr}.`;
+      }
+    } else if (techniqueId === 'tech-602') {
+      const num = getRandomInt(14, 98);
+      const calc = squareTwoDigitGeneral(num);
+      prompt = `Square ${num} using the Trachtenberg two-digit cross-product method.`;
       expression = `${num}²`;
       correctAnswer = calc.squaredStr;
       hints = [
-        'Numbers ending in 5 always end in 25.',
-        `Multiply the tens digit (${tens}) by the next higher number (${tens + 1}).`,
-        `${tens} × ${tens + 1} = ${tens * (tens + 1)}. Attach 25.`
+        'Two-digit squaring: calculate a² | 2ab | b² and collapse.',
+        `Cross-product is 2 × (digit1 × digit2).`,
+        `Collapse intermediate two-digit blocks from right to left.`
+      ];
+      steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
+      explanation = `${num}² = ${calc.squaredStr}.`;
+    } else if (techniqueId === 'tech-603') {
+      const num = getRandomInt(112, 650);
+      const calc = squareThreeDigit(num);
+      prompt = `Square ${num} using the Trachtenberg three-digit squaring method.`;
+      expression = `${num}²`;
+      correctAnswer = calc.squaredStr;
+      hints = [
+        'Three-digit squaring: square end pair, calculate open cross, and square first digit.',
+        `Collapse components with carries.`,
+        `${num}² = ${calc.squaredStr}.`
       ];
       steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
       explanation = `${num}² = ${calc.squaredStr}.`;
     } else {
-      const units = getRandomInt(1, 9);
-      const num = 50 + units;
-      const calc = squareTensDigitFive(num);
-      prompt = `Square ${num} using the special rule for numbers with tens digit 5.`;
-      expression = `${num}²`;
-      correctAnswer = calc.squaredStr;
+      // tech-604, tech-605, tech-606, tech-607 (Square roots & checks)
+      let num = 0;
+      if (techniqueId === 'tech-604') num = getRandomInt(144, 9800);
+      else if (techniqueId === 'tech-605') num = getRandomInt(10000, 999999);
+      else num = getRandomInt(1000000, 99999999);
+
+      const calc = calculateTrachtenbergSquareRoot(num.toString());
+      prompt = `Find the square root of ${num.toLocaleString()} using the Trachtenberg method. State root (and remainder if any).`;
+      expression = `√${num}`;
+      correctAnswer = calc.remainderStr !== '0' ? `${calc.rootStr} R ${calc.remainderStr}` : `${calc.rootStr}`;
       hints = [
-        'For numbers with tens digit 5: first two digits are 25 + units digit; last two digits are units digit squared.',
-        `First two digits: 25 + ${units} = ${25 + units}.`,
-        `Last two digits: ${units}² = ${(units * units).toString().padStart(2, '0')}.`
+        `Mark off digits in pairs from the right: ${calc.digitBlocks.join(' / ')}.`,
+        `First root digit is largest square ≤ first block (${calc.digitBlocks[0]}).`,
+        `Halve remainder (split difference if odd), append 0, divide by first root digit.`
       ];
-      steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
-      explanation = `${num}² = ${calc.squaredStr}.`;
+      steps = calc.steps.map(s => `${s.description}: ${s.workingFormula} → ${s.explanation}`);
+      explanation = `√${num} = ${calc.rootStr}${calc.remainderStr !== '0' ? ` with remainder ${calc.remainderStr}` : ''}.`;
     }
   }
-  else if (techniqueId.startsWith('tech-602') || techniqueId.startsWith('tech-603')) {
-    const num = techniqueId.startsWith('tech-602') ? getRandomInt(14, 98) : getRandomInt(112, 650);
-    const calc = techniqueId.startsWith('tech-602') ? squareTwoDigitGeneral(num) : squareThreeDigit(num);
-    prompt = `Square ${num} using the Trachtenberg cross-product method.`;
-    expression = `${num}²`;
-    correctAnswer = calc.squaredStr;
+  // CHAPTER 7: ALGEBRAIC FOUNDATION (tech-701 through tech-707)
+  else if (techniqueId.startsWith('tech-7')) {
+    const num = getRandomInt(23, 999);
+    const mult = 11;
+    const calc = calculateSingleDigitTrachtenberg(num.toString(), mult);
+    prompt = `Compute ${num} × ${mult} to demonstrate the algebraic principle of the Trachtenberg method: 10a + (a+b) + b.`;
+    expression = `${num} × ${mult}`;
+    correctAnswer = calc.answerString;
+    operands = { a: num, b: mult, op: '×' };
     hints = [
-      'Two-digit squaring: calculate a² | 2ab | b² and collapse.',
-      `Cross-product is 2 × (digit1 × digit2).`,
-      `Collapse intermediate two-digit blocks from right to left.`
+      `Algebraic expansion: 11 × (10a + b) = 100a + 10(a+b) + b.`,
+      `Each column coefficient directly produces the next digit.`,
+      `Verified answer: ${calc.answerString}.`
     ];
-    steps = calc.steps.map(s => `${s.description}: ${s.workingFormula}`);
-    explanation = `${num}² = ${calc.squaredStr}.`;
+    steps = calc.steps.map(s => `Step ${s.stepIndex}: ${s.workingFormula} → put ${s.producedDigit}, carry ${s.carryOut}`);
+    explanation = `Algebraic demonstration: ${num} × ${mult} = ${calc.answerString}.`;
   }
-  else if (techniqueId.startsWith('tech-604') || techniqueId.startsWith('tech-605') || techniqueId.startsWith('tech-606')) {
-    let num = 0;
-    if (techniqueId.startsWith('tech-604')) num = getRandomInt(144, 9800);
-    else num = getRandomInt(10000, 999999);
-
-    const calc = calculateTrachtenbergSquareRoot(num.toString());
-    prompt = `Find the square root of ${num.toLocaleString()} using the Trachtenberg method. State root (and remainder if any).`;
-    expression = `√${num}`;
-    correctAnswer = calc.remainderStr !== '0' ? `${calc.rootStr} R ${calc.remainderStr}` : `${calc.rootStr}`;
-    hints = [
-      `Mark off digits in pairs from the right: ${calc.digitBlocks.join(' / ')}.`,
-      `First root digit is largest square ≤ first block (${calc.digitBlocks[0]}).`,
-      `Halve remainder (split difference if odd), append 0, divide by first root digit.`
-    ];
-    steps = calc.steps.map(s => `${s.description}: ${s.workingFormula} → ${s.explanation}`);
-    explanation = `√${num} = ${calc.rootStr}${calc.remainderStr !== '0' ? ` with remainder ${calc.remainderStr}` : ''}.`;
-  }
-  // CHAPTER 7 & 8: ALGEBRA & CHECKING
+  // CHAPTER 8: CHECKING & REVISION (tech-801)
   else {
     const num = getRandomInt(10000, 9999999);
     const check9 = computeDigitSumDetailed(num.toString());
@@ -489,4 +590,24 @@ export function generateQuestionForTechnique(
     operands
   };
 }
+
+/**
+ * Generates a batch of randomized speed drill questions across primary Trachtenberg techniques
+ */
+export function generateSpeedDrillQuestions(
+  count: number = 10,
+  difficulty: Difficulty = 'intermediate'
+): PracticeQuestion[] {
+  const commonTechniqueIds = [
+    'tech-101', 'tech-102', 'tech-103', 'tech-104', 'tech-105', 'tech-106',
+    'tech-201', 'tech-301', 'tech-401', 'tech-601', 'tech-602'
+  ];
+  const list: PracticeQuestion[] = [];
+  for (let i = 0; i < count; i++) {
+    const techId = commonTechniqueIds[i % commonTechniqueIds.length];
+    list.push(generateQuestionForTechnique(techId, difficulty, 'numerical-answer'));
+  }
+  return list;
+}
+
 

@@ -134,8 +134,8 @@ export const PracticePage: React.FC<PracticePageProps> = ({ progress, onUpdatePr
       setIsSessionActive(false);
       setIsSessionFinished(true);
       // Trigger confetti if accuracy >= 80%
-      const correctCount = sessionResults.filter(r => r.isCorrect).length + (feedback?.isCorrect ? 1 : 0);
-      if (correctCount / questions.length >= 0.8) {
+      const correctCount = sessionResults.filter(r => r.isCorrect).length;
+      if (questions.length > 0 && correctCount / questions.length >= 0.8) {
         confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
       }
     }

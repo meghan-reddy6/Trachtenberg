@@ -85,16 +85,18 @@ export const AssessmentsPage: React.FC<AssessmentsPageProps> = ({ progress, onUp
   const handleSubmitTest = () => {
     if (!activeTest) return;
     let correctCount = 0;
+    let currentProgress = progress;
 
     activeTest.questions.forEach((q, idx) => {
       const ans = userAnswers[idx] || '';
       const res = validateUserAnswer(q, ans);
       if (res.isCorrect) correctCount++;
 
-      // Record in user progress
-      recordPracticeAttempt(progress, q.techniqueId, res.isCorrect, 5000, q.difficulty);
+      // Record in user progress and chain updates
+      currentProgress = recordPracticeAttempt(currentProgress, q.techniqueId, res.isCorrect, 5000, q.difficulty);
     });
 
+    onUpdateProgress(currentProgress);
     setScore(correctCount);
     setTestSubmitted(true);
 
